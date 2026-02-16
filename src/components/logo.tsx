@@ -26,7 +26,7 @@ export function Logo({ iconOnly = false }: { iconOnly?: boolean }) {
         )}
       >
         <span className="font-headline font-bold text-foreground whitespace-nowrap leading-tight text-lg sm:text-xl md:text-2xl md:text-left text-left">
-          Rust Innovations<sup>&trade;</sup>
+          Rust Innovations
         </span>
       </div>
     </Link>

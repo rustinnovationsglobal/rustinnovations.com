@@ -54,10 +54,10 @@ export function Footer() {
           <div className="flex flex-col gap-4 lg:col-span-5">
             <Logo />
              <p className="text-lg font-semibold text-primary">
-              Let’s Build Your Digital Future with Rust Innovations<sup>®</sup>.
+              Let’s Build Your Digital Future with Rust Innovations.
             </p>
             <p className="text-sm text-muted-foreground max-w-md">
-              Rust Innovations<sup>®</sup> is your one-stop digital solution for web and app development, software, courses, e-commerce, and more.
+              Rust Innovations is your one-stop digital solution for web and app development, software, courses, e-commerce, and more.
             </p>
             <div className="flex gap-4">
               {socialLinks.map(link => (
