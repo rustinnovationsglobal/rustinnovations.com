@@ -1,4 +1,3 @@
-
 'use client';
 
 import { motion, type Variants, type Transition, type HTMLMotionProps } from 'framer-motion';
@@ -33,7 +32,7 @@ export const Animated = React.forwardRef(
     }: AnimatedProps<T>,
     ref: React.Ref<any>
   ) => {
-    const Component = motion(as || 'div');
+    const Component = React.useMemo(() => motion(as || 'div'), [as]);
     return (
       <Component
         ref={ref}
