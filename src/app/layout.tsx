@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   },
   description:
     'Your one-stop solution for digital needs: web and app development, paid software, e-commerce, digital marketing, and expert consultancy. Let\'s build your digital future.',
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
@@ -26,7 +29,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <link rel="icon" type="image/svg+xml" href="/assets/logo.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
