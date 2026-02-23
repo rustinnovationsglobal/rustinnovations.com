@@ -129,7 +129,7 @@ export const teamMembers: TeamMember[] = [
     id: '1',
     name: 'Mr. Shahid Rajpoot',
     title: 'Founder & CEO',
-    imageUrl: PlaceHolderImages.find(p => p.id === 'team-member1')?.imageUrl || 'https://picsum.photos/seed/301/400/400',
+    imageUrl: '/assets/CEO.jpeg',
     imageHint: 'Founder and CEO of Rust Innovations',
   },
   {
