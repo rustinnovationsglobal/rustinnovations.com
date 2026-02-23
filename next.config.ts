@@ -21,6 +21,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/about%20us',
+        destination: '/about',
+        permanent: true,
+      },
+      {
         source: '/MediaCenter',
         destination: '/media-center',
         permanent: true,
