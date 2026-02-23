@@ -1,3 +1,4 @@
+
 import type { NavLink, Service, Product, TeamMember, FooterLinks, BlogPost } from './types';
 import { PlaceHolderImages } from './placeholder-images';
 import { Bot, Code, Brush, BarChart3, Database, Cloud, Bitcoin, PenSquare, Type, Video, ShoppingCart, Search, Building } from 'lucide-react';
@@ -128,7 +129,7 @@ export const teamMembers: TeamMember[] = [
     id: '1',
     name: 'Mr. Shahid Rajpoot',
     title: 'Founder & CEO',
-    imageUrl: '/assets/shahid-rajpoot.jpeg',
+    imageUrl: PlaceHolderImages.find(p => p.id === 'team-member1')?.imageUrl || 'https://picsum.photos/seed/301/400/400',
     imageHint: 'Founder and CEO of Rust Innovations',
   },
   {
