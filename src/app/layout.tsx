@@ -7,9 +7,9 @@ import { PageProgress } from '@/components/page-progress';
 import { WhatsappFAB } from '@/components/whatsapp-fab';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import LenisProvider from './lenis-provider';
-import dynamic from 'next/dynamic';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.rustinnovations.com'),
   title: {
     default: 'Rust Innovations | Digital Solutions & Tech Services',
     template: '%s | Rust Innovations',
@@ -17,7 +17,23 @@ export const metadata: Metadata = {
   description:
     'Your one-stop solution for digital needs: web and app development, paid software, e-commerce, digital marketing, and expert consultancy. Let\'s build your digital future.',
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: '/',
   },
 };
 

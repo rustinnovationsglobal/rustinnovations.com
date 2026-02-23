@@ -8,6 +8,25 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  async redirects() {
+    return [
+      {
+        source: '/home',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/about-us',
+        destination: '/about',
+        permanent: true,
+      },
+      {
+        source: '/MediaCenter',
+        destination: '/media-center',
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

@@ -1,8 +1,6 @@
-
-
 import type { NavLink, Service, Product, TeamMember, FooterLinks, BlogPost } from './types';
 import { PlaceHolderImages } from './placeholder-images';
-import { Bot, Code, Brush, BarChart3, Database, Cloud, Bitcoin, PenSquare, Type, Video, ShoppingCart, Search, Building, Facebook, Instagram, Twitter, Linkedin, Github } from 'lucide-react';
+import { Bot, Code, Brush, BarChart3, Database, Cloud, Bitcoin, PenSquare, Type, Video, ShoppingCart, Search, Building } from 'lucide-react';
 
 export const navLinks: NavLink[] = [
   { href: '/', label: 'Home' },
@@ -246,11 +244,3 @@ export const blogPosts: BlogPost[] = [
         `,
     },
 ];
-
-
-
-
-
-    
-
-    
