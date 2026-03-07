@@ -44,9 +44,9 @@
     },
     {
       "id": "ceo-portrait",
-      "description": "Professional portrait of a CEO",
-      "imageUrl": "https://picsum.photos/seed/shahid/600/800",
-      "imageHint": "ceo portrait"
+      "description": "Mr. Shahid Rajpoot - Founder & CEO",
+      "imageUrl": "/assets/CEO.jpeg",
+      "imageHint": "shahid rajpoot"
     },
     {
       "id": "team-member1",

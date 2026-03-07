@@ -126,13 +126,6 @@ export const products: Product[] = [];
 
 export const teamMembers: TeamMember[] = [
   {
-    id: '1',
-    name: 'Shahid Rajpoot',
-    title: 'Founder & CEO',
-    imageUrl: '/assets/CEO.jpeg',
-    imageHint: 'Founder and CEO of Rust Innovations',
-  },
-  {
     id: '2',
     name: 'Zahid Mahmood',
     title: 'Chief Financial Officer',

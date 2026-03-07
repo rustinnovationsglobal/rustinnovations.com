@@ -81,7 +81,7 @@ export default function AboutPage() {
                             </p>
                         </div>
                         <div className="mt-10">
-                            <p className="font-headline text-2xl font-bold text-foreground">Shahid Rajpoot</p>
+                            <p className="font-headline text-2xl font-bold text-foreground">Mr. Shahid Rajpoot</p>
                             <p className="text-primary font-semibold">Founder & CEO</p>
                         </div>
                     </Animated>
@@ -89,7 +89,7 @@ export default function AboutPage() {
                         {ceoImage && (
                             <Image
                                 src={ceoImage.imageUrl}
-                                alt="Shahid Rajpoot - Founder & CEO"
+                                alt="Mr. Shahid Rajpoot - Founder & CEO"
                                 width={600}
                                 height={800}
                                 className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
