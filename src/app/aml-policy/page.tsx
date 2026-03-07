@@ -3,13 +3,6 @@
 
 import { Animated, fadeUp } from '@/components/ui/animated';
 import TOC from '@/components/aml/TOC';
-import type { Metadata } from 'next';
-
-const metadata: Metadata = {
-    title: 'Anti-Money Laundering (AML) Policy',
-    description: 'Read the Anti-Money Laundering (AML) and Counter-Terrorist Financing (CTF) policy of Rust Innovations to understand our commitment to compliance.',
-};
-
 
 const SECTIONS = [
     { id: 'introduction', label: 'Introduction' },
@@ -49,7 +42,7 @@ export default function AMLPolicyPage() {
 
                             <h2 id="introduction" className="font-headline text-2xl font-semibold mt-8 mb-4">1. Introduction</h2>
                             <p className="text-muted-foreground">
-                                Rust Innovations LLP is committed to combating money laundering, terrorist financing, and financial
+                                Rust Innovations is committed to combating money laundering, terrorist financing, and financial
                                 crimes. This policy is designed to ensure compliance with all applicable AML regulations in Pakistan and
                                 internationally, while maintaining the integrity of our operations across all jurisdictions where we
                                 operate.
@@ -58,7 +51,7 @@ export default function AMLPolicyPage() {
                             <h2 id="objectives" className="font-headline text-2xl font-semibold mt-8 mb-4">2. Objectives</h2>
                             <ul className="list-disc list-inside space-y-2 text-muted-foreground">
                                 <li>
-                                    Prevent misuse of Rust Innovations LLP’s services for illegal financial activity.
+                                    Prevent misuse of Rust Innovations’s services for illegal financial activity.
                                 </li>
                                 <li>
                                     Ensure all clients are properly verified and monitored.
@@ -108,7 +101,7 @@ export default function AMLPolicyPage() {
 
                             <h2 id="sanctions" className="font-headline text-2xl font-semibold mt-8 mb-4">6. Sanctions Screening</h2>
                             <p className="text-muted-foreground">
-                                Rust Innovations LLP strictly screens all clients and partners against the following international sanctions
+                                Rust Innovations strictly screens all clients and partners against the following international sanctions
                                 lists:
                             </p>
                             <ul className="list-disc list-inside space-y-2 text-muted-foreground">
@@ -154,7 +147,7 @@ export default function AMLPolicyPage() {
                             <div className="mt-12 border-t pt-8 text-foreground">
                                 <p className="whitespace-pre-line">
                                     <span className="font-semibold text-primary">Signed,</span>{"\n"}
-                                    <span >President Director | Rust Innovations LLP</span>{"\n"}
+                                    <span >President Director | Rust Innovations</span>{"\n"}
                                     <span >Authorized Signatory</span>{"\n"}
                                     <span >Shahid Mahmood</span>{"\n"}
                                     <span >info@rustinnovations.com</span>

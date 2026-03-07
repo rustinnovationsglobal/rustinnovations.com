@@ -232,14 +232,14 @@ export default function TermsAndConditionsPage() {
                         <section id="governing-law">
                             <h2 className="font-headline text-2xl font-semibold mt-8 mb-4">10. Governing Law</h2>
                             <p className="text-muted-foreground">
-                                These Terms & Conditions are governed by the laws of the jurisdiction where <strong>Rust Innovations</strong> is registered.
+                                These Terms & Conditions are governed by the laws of the jurisdiction where Rust Innovations is registered.
                             </p>
                         </section>
 
                         <section id="contact">
                             <h2 className="font-headline text-2xl font-semibold mt-8 mb-4">11. Contact Information</h2>
                             <p className="text-foreground">
-                                For questions or concerns regarding these <strong>Terms & Conditions</strong>, contact us at:
+                                For questions or concerns regarding these Terms & Conditions, contact us at:
                             </p>
                             <ul className="space-y-2 mt-4">
                                 <li className="flex items-start">

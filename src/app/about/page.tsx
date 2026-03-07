@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { teamMembers } from '@/lib/data';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import type { Metadata } from 'next';
 import { Quote } from 'lucide-react';
 import { Animated, fadeUp, scaleUp } from '@/components/ui/animated';
@@ -68,7 +67,7 @@ export default function AboutPage() {
                     <Animated as="div" variants={fadeUp} className="md:order-1">
                         <div className="flex items-center gap-2 mb-4 text-primary">
                             <Quote className="h-8 w-8 fill-current" />
-                            <h2 className="font-headline text-3xl font-bold md:text-4xl">CEO Message</h2>
+                            <h2 className="font-headline text-3xl font-bold md:text-4xl">Message</h2>
                         </div>
                         <div className="space-y-6 text-lg leading-relaxed text-muted-foreground italic">
                             <p>
@@ -79,14 +78,14 @@ export default function AboutPage() {
                             </p>
                         </div>
                         <div className="mt-10">
-                            <p className="font-headline text-2xl font-bold text-foreground">Mr. Shahid Rajpoot</p>
+                            <p className="font-headline text-2xl font-bold text-foreground">Shahid Rajpoot</p>
                             <p className="text-primary font-semibold">Founder & CEO</p>
                         </div>
                     </Animated>
                     <Animated as="div" variants={scaleUp} className="order-first overflow-hidden rounded-2xl md:order-2 shadow-2xl shadow-primary/10">
                         <Image
                             src="/assets/CEO.jpeg"
-                            alt="Mr. Shahid Rajpoot - Founder & CEO"
+                            alt="Shahid Rajpoot - Founder & CEO"
                             width={600}
                             height={800}
                             className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
@@ -128,7 +127,7 @@ export default function AboutPage() {
                                             "mx-auto h-32 w-32 border-4 border-primary/20",
                                             member.imageUrl.includes('male.png') || member.imageUrl.includes('female.png') ? "bg-muted" : ""
                                         )}>
-                                            <AvatarImage src={member.imageUrl} alt={member.name} data-ai-hint={member.imageHint} />
+                                            <AvatarImage src={member.imageUrl} alt={member.name} />
                                             <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
                                         </Avatar>
                                         <h3 className="mt-4 font-headline text-xl font-semibold">{member.name}</h3>
