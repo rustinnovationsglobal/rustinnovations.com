@@ -50,8 +50,6 @@ const ScrollingLogos = () => (
 
 
 export default function AboutPage() {
-    const ceoImage = PlaceHolderImages.find(p => p.id === 'ceo-portrait');
-    
     return (
         <div className="bg-background">
             {/* Hero Section */}
@@ -86,17 +84,14 @@ export default function AboutPage() {
                         </div>
                     </Animated>
                     <Animated as="div" variants={scaleUp} className="order-first overflow-hidden rounded-2xl md:order-2 shadow-2xl shadow-primary/10">
-                        {ceoImage && (
-                            <Image
-                                src={ceoImage.imageUrl}
-                                alt="Mr. Shahid Rajpoot - Founder & CEO"
-                                width={600}
-                                height={800}
-                                className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-                                data-ai-hint={ceoImage.imageHint}
-                                priority
-                            />
-                        )}
+                        <Image
+                            src="/assets/CEO.jpeg"
+                            alt="Mr. Shahid Rajpoot - Founder & CEO"
+                            width={600}
+                            height={800}
+                            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                            priority
+                        />
                     </Animated>
                 </div>
             </section>
