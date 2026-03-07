@@ -43,10 +43,10 @@
       "imageHint": "server room"
     },
     {
-      "id": "about-mission",
-      "description": "Mountain peak at sunrise",
-      "imageUrl": "https://picsum.photos/seed/201/1200/800",
-      "imageHint": "mountain sunrise"
+      "id": "ceo-portrait",
+      "description": "Professional portrait of a CEO",
+      "imageUrl": "https://picsum.photos/seed/shahid/600/800",
+      "imageHint": "ceo portrait"
     },
     {
       "id": "team-member1",

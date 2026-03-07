@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { teamMembers } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import type { Metadata } from 'next';
-import { Handshake, Target, Gem } from 'lucide-react';
+import { Quote } from 'lucide-react';
 import { Animated, fadeUp, scaleUp } from '@/components/ui/animated';
 import { cn } from '@/lib/utils';
 
@@ -13,12 +13,6 @@ export const metadata: Metadata = {
     title: 'About Us | Our Mission, Values, and Team',
     description: 'Learn about the mission, values, and dedicated team behind Rust Innovations, driving innovation and excellence in the tech industry.',
 };
-
-const values = [
-    { icon: <Target className="h-8 w-8 text-primary" />, title: "Innovation", description: "We constantly push boundaries to create what's next." },
-    { icon: <Handshake className="h-8 w-8 text-primary" />, title: "Integrity", description: "We build trust through transparent and ethical practices." },
-    { icon: <Gem className="h-8 w-8 text-primary" />, title: "Excellence", description: "We are committed to the highest standards of quality and performance." },
-];
 
 const registrations = [
     { name: "SECP", logo: "/assets/SECP.png" },
@@ -56,7 +50,8 @@ const ScrollingLogos = () => (
 
 
 export default function AboutPage() {
-    const missionImage = PlaceHolderImages.find(p => p.id === 'about-mission');
+    const ceoImage = PlaceHolderImages.find(p => p.id === 'ceo-portrait');
+    
     return (
         <div className="bg-background">
             {/* Hero Section */}
@@ -69,33 +64,37 @@ export default function AboutPage() {
                 </p>
             </Animated>
 
-            {/* Mission Section */}
-            <section className="py-16 md:py-24">
+            {/* CEO Message Section */}
+            <section className="py-16 md:py-24 bg-card/50">
                 <div className="container mx-auto grid grid-cols-1 items-center gap-12 px-4 md:grid-cols-2">
                     <Animated as="div" variants={fadeUp} className="md:order-1">
-                        <h2 className="font-headline text-3xl font-bold md:text-4xl">Our Mission</h2>
-                        <p className="mt-4 text-muted-foreground">
-                            To empower organizations with transformative technology and strategic guidance, enabling them to thrive in a rapidly evolving digital world. We are committed to building long-term partnerships based on trust, innovation, and a shared vision for success.
-                        </p>
-                        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-3">
-                            {values.map((value, i) => (
-                                <Animated key={value.title} as="div" variants={fadeUp} delay={0.2 + i * 0.1}>
-                                    {value.icon}
-                                    <h3 className="mt-2 font-headline text-lg font-semibold">{value.title}</h3>
-                                    <p className="mt-1 text-sm text-muted-foreground">{value.description}</p>
-                                </Animated>
-                            ))}
+                        <div className="flex items-center gap-2 mb-4 text-primary">
+                            <Quote className="h-8 w-8 fill-current" />
+                            <h2 className="font-headline text-3xl font-bold md:text-4xl">CEO Message</h2>
+                        </div>
+                        <div className="space-y-6 text-lg leading-relaxed text-muted-foreground italic">
+                            <p>
+                                "Growth is never by mere chance; it is the result of forces working together. At Rust Innovations, we are that force for your digital journey. We specialize in turning complex technological hurdles into seamless opportunities for expansion."
+                            </p>
+                            <p>
+                                "Our commitment is to your success, providing the tools and strategies that not only attract customers but turn them into lifelong advocates of your brand. Let's innovate together and build a future that is secure, scalable, and spectacularly successful."
+                            </p>
+                        </div>
+                        <div className="mt-10">
+                            <p className="font-headline text-2xl font-bold text-foreground">Shahid Rajpoot</p>
+                            <p className="text-primary font-semibold">Founder & CEO</p>
                         </div>
                     </Animated>
-                    <Animated as="div" variants={scaleUp} className="order-first overflow-hidden rounded-lg md:order-2">
-                        {missionImage && (
+                    <Animated as="div" variants={scaleUp} className="order-first overflow-hidden rounded-2xl md:order-2 shadow-2xl shadow-primary/10">
+                        {ceoImage && (
                             <Image
-                                src={missionImage.imageUrl}
-                                alt={missionImage.description}
-                                width={1200}
+                                src={ceoImage.imageUrl}
+                                alt="Shahid Rajpoot - Founder & CEO"
+                                width={600}
                                 height={800}
                                 className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-                                data-ai-hint={missionImage.imageHint}
+                                data-ai-hint={ceoImage.imageHint}
+                                priority
                             />
                         )}
                     </Animated>
@@ -103,7 +102,7 @@ export default function AboutPage() {
             </section>
             
             {/* Registrations Section */}
-            <section className="bg-card/30 py-16 md:py-24">
+            <section className="bg-background py-16 md:py-24 border-y border-border/10">
                 <div className="container mx-auto px-4">
                     <Animated as="div" variants={fadeUp} className="text-center">
                         <h2 className="font-headline text-3xl font-bold md:text-4xl">Registered With</h2>
@@ -125,10 +124,10 @@ export default function AboutPage() {
                             The driving force behind our innovation and success.
                         </p>
                     </Animated>
-                    <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
+                    <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                         {teamMembers.map((member, i) => (
                              <Animated as="div" key={member.id} variants={scaleUp} delay={i * 0.1}>
-                                <Card className="overflow-hidden text-center transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+                                <Card className="overflow-hidden text-center transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 border-border/50 h-full">
                                     <CardContent className="p-6">
                                         <Avatar className={cn(
                                             "mx-auto h-32 w-32 border-4 border-primary/20",
