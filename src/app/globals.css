@@ -18,10 +18,11 @@
   -webkit-text-fill-color: transparent;
   animation: gradient-animation 3s ease-in-out infinite;
 }
+
 html {
   scroll-behavior: smooth;
-  font-family: 'Inter', 'PT Sans', 'Space Grotesk', sans-serif;
 }
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -79,7 +80,7 @@ html {
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', 'PT Sans', 'Space Grotesk', sans-serif;
+    font-family: var(--font-pt-sans), var(--font-inter), sans-serif;
     overflow-x: hidden;
   }
 }
@@ -96,7 +97,6 @@ html {
       background-position: 0% 50%;
     }
   }
-  /* .animated-gradient now uses custom gradient above */
   
   @keyframes scroll {
     from {
