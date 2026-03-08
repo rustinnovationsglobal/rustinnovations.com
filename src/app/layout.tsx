@@ -21,6 +21,9 @@ export const metadata: Metadata = {
       { url: '/favicon.ico', sizes: 'any' },
     ],
   },
+  verification: {
+    google: 'KhnVgH0wCXMFmWVYchm9x-sRcbTwS2JjnRZY-JnpwhQ',
+  },
   robots: {
     index: true,
     follow: true,
