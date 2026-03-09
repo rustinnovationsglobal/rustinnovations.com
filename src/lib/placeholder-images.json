@@ -128,15 +128,33 @@
     },
     {
       "id": "testimonial1",
-      "description": "Portrait of a satisfied female CEO",
+      "description": "Portrait of a satisfied business person",
       "imageUrl": "https://picsum.photos/seed/601/100/100",
-      "imageHint": "business woman"
+      "imageHint": "business professional"
     },
     {
       "id": "testimonial2",
-      "description": "Portrait of a satisfied male CTO",
+      "description": "Portrait of a satisfied client",
       "imageUrl": "https://picsum.photos/seed/602/100/100",
-      "imageHint": "tech professional"
+      "imageHint": "happy client"
+    },
+    {
+      "id": "testimonial3",
+      "description": "Portrait of Muhammad Abdullah",
+      "imageUrl": "https://picsum.photos/seed/603/100/100",
+      "imageHint": "business owner"
+    },
+    {
+      "id": "testimonial4",
+      "description": "Portrait of Shayan Khan",
+      "imageUrl": "https://picsum.photos/seed/604/100/100",
+      "imageHint": "satisfied customer"
+    },
+    {
+      "id": "testimonial5",
+      "description": "Portrait of Irfan Ahmad",
+      "imageUrl": "https://picsum.photos/seed/605/100/100",
+      "imageHint": "entrepreneur"
     }
   ]
 }

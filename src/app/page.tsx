@@ -40,26 +40,32 @@ const features = [
 
 const testimonials = [
   {
-    name: 'Eleanor Vance',
-    title: 'CEO, QuantumLeap Inc.',
-    image: PlaceHolderImages.find(p => p.id === 'testimonial1')!.imageUrl,
-    imageHint: PlaceHolderImages.find(p => p.id === 'testimonial1')!.imageHint,
+    name: 'Muhammad Abdullah',
+    title: 'Business Owner',
+    image: PlaceHolderImages.find(p => p.id === 'testimonial3')!.imageUrl,
+    imageHint: PlaceHolderImages.find(p => p.id === 'testimonial3')!.imageHint,
     quote:
-      "Rust Innovations transformed our digital infrastructure. Their expertise and dedication are second to none. We've seen a 200% increase in efficiency.",
+      "Great experience with the Rust Innovations team. I needed a custom CRM system with reporting features, and they delivered more than I expected. They also helped me understand how to use it with step-by-step guidance. Everything is working perfectly. For any business owner who wants reliable digital systems, this is the company to go with.",
   },
   {
-    name: 'Marcus Thorne',
-    title: 'CTO, StellarForge',
-    image: PlaceHolderImages.find(p => p.id === 'testimonial2')!.imageUrl,
-    imageHint: PlaceHolderImages.find(p => p.id === 'testimonial2')!.imageHint,
+    name: 'Shayan Khan',
+    title: 'Client',
+    image: PlaceHolderImages.find(p => p.id === 'testimonial4')!.imageUrl,
+    imageHint: PlaceHolderImages.find(p => p.id === 'testimonial4')!.imageHint,
     quote:
-      'The custom product developed by Rust Innovations has been a game-changer for our business. It’s robust, scalable, and was delivered ahead of schedule.',
+      'Rust Innovations is a reliable and forward-thinking company, known for its professionalism, quality service, and innovative solutions. Highly recommended!',
+  },
+  {
+    name: 'Irfan Ahmad',
+    title: 'Entrepreneur',
+    image: PlaceHolderImages.find(p => p.id === 'testimonial5')!.imageUrl,
+    imageHint: PlaceHolderImages.find(p => p.id === 'testimonial5')!.imageHint,
+    quote:
+      'They built my landing page just how I wanted. It was quick and looked clean. I liked how simple they kept everything. Communication was easy and straight to the point. I’d work with them again.',
   },
 ];
 
 const Home = () => {
-  const heroImage = PlaceHolderImages.find(p => p.id === 'hero-home');
-
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -199,10 +205,10 @@ const Home = () => {
               What Our Clients Say
             </h2>
           </Animated>
-          <div className="mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-2">
+          <div className="mx-auto mt-12 grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-3">
             {testimonials.map((testimonial, i) => (
               <Animated key={testimonial.name} variants={scaleUp} delay={i * 0.1}>
-                <Card className="flex flex-col">
+                <Card className="flex flex-col h-full">
                   <CardContent className="flex-1 p-6">
                     <p className="italic text-muted-foreground">
                       "{testimonial.quote}"
