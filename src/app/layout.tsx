@@ -1,3 +1,4 @@
+
 import type { Metadata } from 'next';
 import './globals.css';
 import { Inter, PT_Sans, Space_Grotesk } from 'next/font/google';
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
     'Your one-stop solution for digital needs: web and app development, software, e-commerce, digital marketing, and expert consultancy. Let\'s build your digital future.',
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/assets/logo.svg', type: 'image/svg+xml' },
     ],
   },
   verification: {

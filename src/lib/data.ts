@@ -127,10 +127,10 @@ export const products: Product[] = [];
 export const teamMembers: TeamMember[] = [
   {
     id: '2',
-    name: 'Zahid Mahmood',
+    name: 'Zahid Mehmood',
     title: 'Chief Financial Officer',
     description: 'Expert in financial planning, risk management, and strategic fiscal growth for global operations.',
-    imageUrl: '/assets/male.png',
+    imageUrl: '/assets/zahid_mahmood.jpeg',
     imageHint: 'professional portrait male',
   },
   {
@@ -154,8 +154,8 @@ export const teamMembers: TeamMember[] = [
     name: 'Muhammad Usman',
     title: 'Country Head (UAE)',
     description: 'Spearheading business expansion and strategic local partnerships across the Middle Eastern markets.',
-    imageUrl: '/assets/male.png',
-    imageHint: 'professional portrait male',
+    imageUrl: '/assets/country_head_UAE.jpeg',
+    imageHint: 'Country Head UAE',
   },
   {
     id: '6',
