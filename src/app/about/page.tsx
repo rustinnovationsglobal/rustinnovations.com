@@ -1,4 +1,3 @@
-
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -27,18 +26,18 @@ const ScrollingLogos = () => (
         <div className="flex w-max animate-scroll">
             {[...registrations, ...registrations].map((reg, index) => (
                 <div key={`${reg.name}-${index}`} className="w-72 px-4">
-                    <Card className="group h-full w-full transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10">
-                        <CardContent className="flex h-full flex-col items-center justify-center p-4">
+                    <Card className="group h-full w-full transform border-none bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/20">
+                        <CardContent className="flex h-full flex-col items-center justify-center p-6">
                             <div className="relative flex h-24 w-full items-center justify-center">
                                 <Image 
                                     src={reg.logo} 
                                     alt={`${reg.name} logo`} 
-                                    width={80}
-                                    height={64}
+                                    width={120}
+                                    height={80}
                                     className="object-contain transition-transform duration-300 group-hover:scale-110" 
                                 />
                             </div>
-                            <p className="mt-2 text-center font-headline text-xs font-semibold">{reg.name}</p>
+                            <p className="mt-4 text-center font-headline text-sm font-bold text-black uppercase tracking-wider">{reg.name}</p>
                         </CardContent>
                     </Card>
                 </div>
@@ -65,27 +64,33 @@ export default function AboutPage() {
             <section className="py-16 md:py-24 bg-card/50">
                 <div className="container mx-auto grid grid-cols-1 items-center gap-12 px-4 md:grid-cols-2">
                     <Animated as="div" variants={fadeUp} className="md:order-1">
-                        <div className="flex items-center gap-2 mb-4 text-primary">
+                        <div className="flex items-center gap-2 mb-6 text-primary">
                             <Quote className="h-8 w-8 fill-current" />
                             <h2 className="font-headline text-3xl font-bold md:text-4xl">Message</h2>
                         </div>
-                        <div className="space-y-6 text-lg leading-relaxed text-muted-foreground italic">
+                        <div className="space-y-6 text-base leading-relaxed text-muted-foreground italic">
                             <p>
-                                "Growth is never by mere chance; it is the result of forces working together. At Rust Innovations, we are that force for your digital journey. We specialize in turning complex technological hurdles into seamless opportunities for expansion."
+                                "Every meaningful journey starts with a simple idea and the courage to pursue it. As the founder and CEO of Rust Innovations, Shahid Rajpot, I have always believed that progress comes from persistence, learning, and the willingness to build something that creates real value for people."
                             </p>
                             <p>
-                                "Our commitment is to your success, providing the tools and strategies that not only attract customers but turn them into lifelong advocates of your brand. Let's innovate together and build a future that is secure, scalable, and spectacularly successful."
+                                "My journey with Rust Innovations began with a vision to create a platform where innovation, creativity, and technology could come together to open new opportunities for businesses and entrepreneurs around the world. Along the way, we have not only worked with amazing clients but also started building our own projects such as Rust Wheel, which reflects our belief that ideas should turn into real platforms that help people connect, trade, and grow."
+                            </p>
+                            <p>
+                                "Personally, my motivation has always been to keep moving forward, keep building, and keep improving every day. I am grateful for the trust people have placed in Shahid Rajpot and Rust Innovations, whether through our technology initiatives or through communities where we have served thousands of users, including more than 3200+ clients with a 99% positive rating on OKX P2P."
+                            </p>
+                            <p>
+                                "Looking ahead, my vision is simple: to continue growing Rust Innovations into a global innovation ecosystem and expand our presence into regions like Europe, Turkey, Brazil, and Argentina while inspiring others to believe that with focus, discipline, and innovation, great things can be built."
                             </p>
                         </div>
                         <div className="mt-10">
-                            <p className="font-headline text-2xl font-bold text-foreground">Shahid Rajpoot</p>
+                            <p className="font-headline text-2xl font-bold text-foreground">Shahid Rajpot</p>
                             <p className="text-primary font-semibold">Founder & CEO</p>
                         </div>
                     </Animated>
                     <Animated as="div" variants={scaleUp} className="order-first overflow-hidden rounded-2xl md:order-2 shadow-2xl shadow-primary/10">
                         <Image
                             src="/assets/CEO.jpeg"
-                            alt="Shahid Rajpoot - Founder & CEO"
+                            alt="Shahid Rajpot - Founder & CEO"
                             width={600}
                             height={800}
                             className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
