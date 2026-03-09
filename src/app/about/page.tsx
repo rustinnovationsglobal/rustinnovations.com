@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -137,6 +138,11 @@ export default function AboutPage() {
                                         </Avatar>
                                         <h3 className="mt-4 font-headline text-xl font-semibold">{member.name}</h3>
                                         <p className="font-headline text-sm font-bold text-primary">{member.title}</p>
+                                        {member.description && (
+                                            <p className="mt-3 text-sm text-muted-foreground line-clamp-3">
+                                                {member.description}
+                                            </p>
+                                        )}
                                     </CardContent>
                                 </Card>
                             </Animated>

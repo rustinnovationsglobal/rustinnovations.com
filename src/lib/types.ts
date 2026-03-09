@@ -29,6 +29,7 @@ export type TeamMember = {
   id: string;
   name: string;
   title: string;
+  description?: string;
   imageUrl: string;
   imageHint: string;
 };
