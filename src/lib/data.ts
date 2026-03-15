@@ -19,7 +19,7 @@ export const services: Service[] = [
     longDescription: 'Crafting bespoke digital strategies to navigate the modern market for sustainable growth and a competitive edge.',
     icon: Bot,
     imageUrl: PlaceHolderImages.find(p => p.id === 'service-strategy')!.imageUrl,
-    imageHint: PlaceHolderImages.find(p => p.id === 'service-strategy')!.imageHint,
+    imageHint: 'team meeting',
   },
   {
     id: 'ui-ux-design',
@@ -28,7 +28,7 @@ export const services: Service[] = [
     longDescription: 'Creating intuitive and engaging user experiences that captivate your audience and drive conversion.',
     icon: Brush,
     imageUrl: PlaceHolderImages.find(p => p.id === 'service-design')!.imageUrl,
-    imageHint: PlaceHolderImages.find(p => p.id === 'service-design')!.imageHint,
+    imageHint: 'design sketch',
   },
   {
     id: 'app-development',
@@ -37,7 +37,7 @@ export const services: Service[] = [
     longDescription: 'Building robust, scalable, and secure custom mobile applications tailored to your specific business needs.',
     icon: Code,
     imageUrl: PlaceHolderImages.find(p => p.id === 'service-development')!.imageUrl,
-    imageHint: PlaceHolderImages.find(p => p.id === 'service-development')!.imageHint,
+    imageHint: 'code screen',
   },
   {
     id: 'website-development',
@@ -64,7 +64,7 @@ export const services: Service[] = [
     longDescription: 'Data-driven digital marketing services including SEO, content marketing, and paid advertising to amplify your brand\'s voice.',
     icon: BarChart3,
     imageUrl: PlaceHolderImages.find(p => p.id === 'service-marketing')!.imageUrl,
-    imageHint: PlaceHolderImages.find(p => p.id === 'service-marketing')!.imageHint,
+    imageHint: 'growth chart',
   },
   {
     id: 'video-editing',
@@ -134,20 +134,20 @@ export const teamMembers: TeamMember[] = [
     imageHint: 'Zahid Mahmood CFO',
   },
   {
-    id: '3',
-    name: 'Asadullah Zahid',
-    title: 'Chief Operational Manager',
-    description: 'Asadullah Zahid manages the global operations of Rust Innovations and ensures the smooth execution of projects for international clients. With strong expertise in operational management, cross-border logistics, and supply chain coordination, he plays a central role in maintaining efficient workflows across the company. His experience in China sourcing and e-commerce supply chains enables Rust Innovations to handle complex international projects while maintaining reliable documentation, delivery standards, and client coordination worldwide.',
-    imageUrl: '/assets/coo.jpeg',
-    imageHint: 'Asadullah Zahid Chief Operational Manager',
-  },
-  {
     id: '4',
     name: 'Zubair Mahmood',
     title: 'Head of Technology',
     description: 'Zubair Mahmood leads the technical vision of Rust Innovations. With five years of hands-on coding experience, he has successfully delivered several technology projects that generated significant revenue for the company. As the head of the technical team, he focuses on building scalable digital systems and innovative platforms. Zubair also leads Rust Wheel, the company’s pilot product initiative, where he oversees development, technical architecture, and the future roadmap of the platform.',
     imageUrl: '/assets/cto.png',
     imageHint: 'Zubair Mahmood Head of Technology',
+  },
+  {
+    id: '3',
+    name: 'Asadullah Zahid',
+    title: 'Chief Operational Manager',
+    description: 'Asadullah Zahid manages the global operations of Rust Innovations and ensures the smooth execution of projects for international clients. With strong expertise in operational management, cross-border logistics, and supply chain coordination, he plays a central role in maintaining efficient workflows across the company. His experience in China sourcing and e-commerce supply chains enables Rust Innovations to handle complex international projects while maintaining reliable documentation, delivery standards, and client coordination worldwide.',
+    imageUrl: '/assets/coo.jpeg',
+    imageHint: 'Asadullah Zahid Chief Operational Manager',
   },
   {
     id: '5',
