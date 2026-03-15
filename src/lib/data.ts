@@ -135,19 +135,19 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: '3',
+    name: 'Asadullah Zahid',
+    title: 'Chief Operational Manager',
+    description: 'Asadullah Zahid manages the global operations of Rust Innovations and ensures the smooth execution of projects for international clients. With strong expertise in operational management, cross-border logistics, and supply chain coordination, he plays a central role in maintaining efficient workflows across the company. His experience in China sourcing and e-commerce supply chains enables Rust Innovations to handle complex international projects while maintaining reliable documentation, delivery standards, and client coordination worldwide.',
+    imageUrl: '/assets/coo.jpeg',
+    imageHint: 'Asadullah Zahid Chief Operational Manager',
+  },
+  {
+    id: '4',
     name: 'Zubair Mahmood',
     title: 'Head of Technology',
     description: 'Zubair Mahmood leads the technical vision of Rust Innovations. With five years of hands-on coding experience, he has successfully delivered several technology projects that generated significant revenue for the company. As the head of the technical team, he focuses on building scalable digital systems and innovative platforms. Zubair also leads Rust Wheel, the company’s pilot product initiative, where he oversees development, technical architecture, and the future roadmap of the platform.',
     imageUrl: '/assets/cto.png',
     imageHint: 'Zubair Mahmood Head of Technology',
-  },
-  {
-    id: '4',
-    name: 'Asadullah',
-    title: 'Chief Operational Manager',
-    description: 'Asadullah manages the global operations of Rust Innovations and ensures the smooth execution of projects for international clients. With strong expertise in operational management, cross-border logistics, and supply chain coordination, he plays a central role in maintaining efficient workflows across the company. His experience in China sourcing and e-commerce supply chains enables Rust Innovations to handle complex international projects while maintaining reliable documentation, delivery standards, and client coordination worldwide.',
-    imageUrl: '/assets/coo.jpeg',
-    imageHint: 'Asadullah Chief Operational Manager',
   },
   {
     id: '5',
@@ -182,7 +182,6 @@ export const teamMembers: TeamMember[] = [
     imageHint: 'Rubab Gull Global Marketing Manager',
   },
 ];
-
 
 export const footerLinks: FooterLinks = {
   quickLinks: [

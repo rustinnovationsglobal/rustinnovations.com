@@ -124,25 +124,29 @@ export default function AboutPage() {
                             The driving force behind our innovation and success.
                         </p>
                     </Animated>
-                    <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                    <div className="mt-12 grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                         {teamMembers.map((member, i) => (
                              <Animated as="div" key={member.id} variants={scaleUp} delay={i * 0.1}>
-                                <Card className="overflow-hidden text-center transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 border-border/50 h-full">
-                                    <CardContent className="p-6">
-                                        <Avatar className={cn(
-                                            "mx-auto h-32 w-32 border-4 border-primary/20",
-                                            member.imageUrl.includes('male.png') || member.imageUrl.includes('female.png') ? "bg-muted" : ""
-                                        )}>
-                                            <AvatarImage src={member.imageUrl} alt={member.name} />
-                                            <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                                        </Avatar>
-                                        <h3 className="mt-4 font-headline text-xl font-semibold">{member.name}</h3>
-                                        <p className="font-headline text-sm font-bold text-primary">{member.title}</p>
-                                        {member.description && (
-                                            <p className="mt-3 text-sm text-muted-foreground text-left leading-relaxed">
-                                                {member.description}
-                                            </p>
-                                        )}
+                                <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 border-border/50 h-full group bg-background/40 backdrop-blur-sm">
+                                    <CardContent className="p-8">
+                                        <div className="flex flex-col md:flex-row gap-6 items-start">
+                                            <Avatar className={cn(
+                                                "h-24 w-24 border-4 border-primary/20 shrink-0",
+                                                member.imageUrl.includes('male.png') || member.imageUrl.includes('female.png') ? "bg-muted" : ""
+                                            )}>
+                                                <AvatarImage src={member.imageUrl} alt={member.name} className="object-cover" />
+                                                <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                                            </Avatar>
+                                            <div className="flex-1">
+                                                <h3 className="font-headline text-2xl font-bold group-hover:text-primary transition-colors">{member.name}</h3>
+                                                <p className="font-headline text-sm font-bold text-primary uppercase tracking-tighter mb-4">{member.title}</p>
+                                                {member.description && (
+                                                    <p className="text-sm text-muted-foreground leading-relaxed">
+                                                        {member.description}
+                                                    </p>
+                                                )}
+                                            </div>
+                                        </div>
                                     </CardContent>
                                 </Card>
                             </Animated>
