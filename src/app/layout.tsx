@@ -9,6 +9,7 @@ import { PageProgress } from '@/components/page-progress';
 import { WhatsappFAB } from '@/components/whatsapp-fab';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import LenisProvider from './lenis-provider';
+import { cn } from '@/lib/utils';
 
 const inter = Inter({ 
   subsets: ['latin'], 
@@ -64,8 +65,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("dark", inter.variable, ptSans.variable, spaceGrotesk.variable)}>
-      <body className="font-body antialiased bg-background text-foreground">
+    <html 
+      lang="en" 
+      className={cn("dark", inter.variable, ptSans.variable, spaceGrotesk.variable)}
+      suppressHydrationWarning
+    >
+      <body className="font-body antialiased bg-background text-foreground" suppressHydrationWarning>
         <LenisProvider>
           <TooltipProvider>
             <PageProgress />
@@ -81,9 +86,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
-
-// Helper to handle multiple variables
-function cn(...classes: string[]) {
-  return classes.filter(Boolean).join(' ');
 }

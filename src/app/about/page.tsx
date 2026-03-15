@@ -15,11 +15,16 @@ export const metadata: Metadata = {
 
 const registrations = [
     { name: "SECP", logo: "/assets/SECP.png" },
-    { name: "Bank of Indonesia", logo: "/assets/bank_indonesia.png" },
+ //   { name: "Bank of Indonesia", logo: "/assets/bank_indonesia.png" },
     { name: "State Bank of Pakistan", logo: "/assets/SBP.png" },
     { name: "OJK", logo: "/assets/ojk.png" },
     { name: "Lahore Chamber", logo: "/assets/chamber_lahore.png" },
     { name: "IPO", logo: "/assets/IPO.png" },
+    { name: "FBR", logo: "/assets/FBR.jpeg"},
+    { name: "PT Bank Mandiri", logo: "/assets/PT Bank Mandiri.jpeg"},
+    { name: "Bank Central Asia", logo: "/assets/Bank Central Asia.jpeg"},
+    { name: "Direktorat Jenderal Pajak", logo: "/assets/Direktorat Jenderal Pajak.jpeg"},
+    { name: "MINISTRY OF LAW AND HUMAN RIGHTS".toLowerCase, logo: "/assets/MINISTRY OF LAW AND HUMAN RIGHTS.jpeg"}
 ];
 
 const ScrollingLogos = () => (
