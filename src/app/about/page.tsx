@@ -36,7 +36,7 @@ const ScrollingLogos = () => (
         <div className="flex w-max animate-scroll">
             {[...registrations, ...registrations].map((reg, index) => (
                 <div key={`${reg.name}-${index}`} className="w-72 px-4">
-                    <Card className="group h-full w-full transform border-none bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/20">
+                    <Card className="h-full w-full border-none bg-white shadow-md">
                         <CardContent className="flex h-full flex-col items-center justify-center p-6">
                             <div className="relative flex h-24 w-full items-center justify-center">
                                 <Image 
@@ -44,7 +44,7 @@ const ScrollingLogos = () => (
                                     alt={`${reg.name} logo`} 
                                     width={120}
                                     height={80}
-                                    className="object-contain transition-transform duration-300 group-hover:scale-110" 
+                                    className="object-contain" 
                                 />
                             </div>
                             <p className="mt-4 text-center font-headline text-sm font-bold text-black uppercase tracking-wider">{reg.name}</p>
@@ -212,3 +212,4 @@ export default function AboutPage() {
         </div>
     );
 }
+
