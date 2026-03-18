@@ -1,8 +1,18 @@
 
+'use client';
+
 import Link from 'next/link';
-import { Linkedin, Facebook } from 'lucide-react';
+import { Linkedin, Facebook, MapPin, ExternalLink } from 'lucide-react';
 import { Logo } from '@/components/logo';
 import { footerLinks } from '@/lib/data';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from '@/components/ui/button';
 
 const socialLinks = [
   { 
@@ -43,9 +53,42 @@ const socialLinks = [
   },
 ];
 
+const countryDetails = {
+  'Pakistan': {
+    legalName: 'RUST INNOVATIONS LLP',
+    authority: 'Securities and Exchange Commission of Pakistan (SECP)',
+    details: [
+      { label: 'Incorporation No', value: '0289127' },
+      { label: 'FBR Tax No (NTN)', value: 'G542016' },
+      { label: 'Chamber Membership', value: '133509-C' },
+    ],
+    address: 'Laal Shah Road, Multani Colony, Bhagbanpura, Lahore, Pakistan.',
+    mapLink: 'https://www.google.com/maps/search/?api=1&query=Laal+Shah+Road,+Multani+Colony,+Bhagbanpura,+Lahore,+Pakistan'
+  },
+  'Indonesia': {
+    legalName: 'PT RUST INNOVATIONS LLP',
+    authority: 'Ministry of Investment and Downstreaming / BKPM',
+    details: [
+      { label: 'NIB (Business ID)', value: '0804250000466' },
+      { label: 'NPWP (Tax No)', value: '1000 0000 0121 7738' },
+    ],
+    address: 'BLOK RRGB 23 JL CENTRAL PARK 3, Grand Galaxy City, Bekasi, Jawa Barat, Indonesia.',
+    mapLink: 'https://www.google.com/maps/search/?api=1&query=BLOK+RRGB+23+JL+CENTRAL+PARK+3,+Grand+Galaxy+City,+Bekasi,+Jawa+Barat,+Indonesia'
+  },
+  'UAE': {
+    legalName: 'Rust Innovations LLC',
+    authority: 'Ajman Media City Free Zone (AMC)',
+    details: [
+      { label: 'License Status', value: 'In Process' },
+    ],
+    address: 'Ajman Media City Free Zone, Sharjah, United Arab Emirates.',
+    mapLink: 'https://www.google.com/maps/search/?api=1&query=Ajman+Media+City+Free+Zone,+Sharjah,+United+Arab+Emirates'
+  }
+};
 
 export function Footer() {
   const quickLinks = footerLinks.quickLinks;
+  
   return (
     <footer className="border-t bg-card text-card-foreground">
       <div className="container mx-auto px-4 py-12">
@@ -108,11 +151,60 @@ export function Footer() {
                   Operational Countries
                 </h3>
                 <ul className="mt-4 space-y-2">
-                  {footerLinks.countries.map(country => (
-                    <li key={country} className="text-sm text-muted-foreground">
-                      {country}
-                    </li>
-                  ))}
+                  {footerLinks.countries.map(country => {
+                    const data = countryDetails[country as keyof typeof countryDetails];
+                    return (
+                      <li key={country}>
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <button className="text-sm text-muted-foreground transition-colors hover:text-primary text-left">
+                              {country}
+                            </button>
+                          </DialogTrigger>
+                          <DialogContent className="max-w-md">
+                            <DialogHeader>
+                              <DialogTitle className="text-2xl font-headline font-bold text-primary">
+                                {country} Operations
+                              </DialogTitle>
+                            </DialogHeader>
+                            <div className="mt-4 space-y-6">
+                              <div className="space-y-1">
+                                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Legal Name</p>
+                                <p className="text-lg font-semibold">{data.legalName}</p>
+                              </div>
+                              <div className="space-y-1">
+                                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Regulatory Authority</p>
+                                <p className="text-sm">{data.authority}</p>
+                              </div>
+                              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                {data.details.map((detail, idx) => (
+                                  <div key={idx} className="space-y-1">
+                                    <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">{detail.label}</p>
+                                    <p className="text-sm font-medium">{detail.value}</p>
+                                  </div>
+                                ))}
+                              </div>
+                              <div className="space-y-2 pt-4 border-t">
+                                <div className="flex items-start gap-2">
+                                  <MapPin className="h-4 w-4 text-primary shrink-0 mt-1" />
+                                  <div className="space-y-1">
+                                    <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Office Address</p>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">{data.address}</p>
+                                  </div>
+                                </div>
+                                <Button asChild className="w-full mt-4" variant="outline">
+                                  <Link href={data.mapLink} target="_blank" rel="noopener noreferrer">
+                                    <ExternalLink className="mr-2 h-4 w-4" />
+                                    Get Directions
+                                  </Link>
+                                </Button>
+                              </div>
+                            </div>
+                          </DialogContent>
+                        </Dialog>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
           </div>
