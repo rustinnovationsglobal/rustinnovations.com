@@ -144,7 +144,7 @@ export const teamMembers: TeamMember[] = [
   {
     id: '4',
     name: 'Asadullah Zahid',
-    title: 'Chief Operational Manager',
+    title: 'Chief Operational Officer',
     description: 'Asadullah Zahid manages the global operations of Rust Innovations and ensures the smooth execution of projects for international clients. With strong expertise in operational management, cross-border logistics, and supply chain coordination, he plays a central role in maintaining efficient workflows across the company. His experience in China sourcing and e-commerce supply chains enables Rust Innovations to handle complex international projects while maintaining reliable documentation, delivery standards, and client coordination worldwide.',
     imageUrl: '/assets/coo.jpeg',
     imageHint: 'Asadullah Zahid Chief Operational Manager',
@@ -170,7 +170,7 @@ export const teamMembers: TeamMember[] = [
     name: 'Farhan Kabeer',
     title: 'Operational Manager Pakistan',
     description: 'Farhan Kabeer plays an important role in maintaining operational efficiency and regulatory compliance at Rust Innovations Pakistan. As Operational Manager and Head of the Internal Anti-Money Laundering (AML) Unit, he ensures that company processes align with international compliance standards. With strong knowledge of the Pakistani market and experience working with leading companies, Farhan has significantly strengthened the organization’s risk management and compliance frameworks.',
-    imageUrl: '/assets/male.png',
+    imageUrl: '/assets/operational manager pakistan.png',
     imageHint: 'Farhan Kabeer Operational Manager',
   },
   {

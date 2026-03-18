@@ -28,7 +28,7 @@ const registrations = [
     { name: "PT Bank Mandiri", logo: "/assets/PT_Bank_Mandiri.png"},
     { name: "Bank Central Asia", logo: "/assets/Bank Central Asia.jpeg"},
     { name: "Direktorat Jenderal Pajak", logo: "/assets/Direktorat Jenderal Pajak.jpeg"},
-    { name: "Ministry of Law and Human Rights", logo: "/assets/MINISTRY OF LAW AND HUMAN RIGHTS.jpeg"}
+    { name: "Ministry of Law and Human Rights", logo: "/assets/MINISTRY OF LAW AND HUMAN RIGHTS.jpeg"},
 ];
 
 const ScrollingLogos = () => (
@@ -96,8 +96,8 @@ const LeadershipCard = ({ member }: { member: any }) => {
                                                 {member.title}
                                             </p>
                                         </DialogHeader>
-                                        <div className="mt-6 flex flex-col md:flex-row gap-8 items-start">
-                                            <div className="relative w-full md:w-64 aspect-[3/4] shrink-0 rounded-xl overflow-hidden border-2 border-primary/20 shadow-xl">
+                                        <div className="mt-6 flex flex-col md:flex-row gap-8 items-center md:items-start">
+                                            <div className="relative w-48 h-48 md:w-64 md:h-64 shrink-0 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl">
                                                 <Image 
                                                     src={member.imageUrl} 
                                                     alt={member.name} 
@@ -212,4 +212,3 @@ export default function AboutPage() {
         </div>
     );
 }
-
