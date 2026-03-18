@@ -166,7 +166,7 @@ export default function AboutPage() {
                     </Animated>
                     <Animated as="div" variants={scaleUp} className="order-first overflow-hidden rounded-2xl md:order-2 shadow-2xl shadow-primary/10">
                         <Image
-                            src="/assets/CEO.jpeg"
+                            src="/assets/CEO.webp"
                             alt="Shahid Rajpot - Founder & CEO"
                             width={600}
                             height={800}
