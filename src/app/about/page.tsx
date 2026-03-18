@@ -7,9 +7,16 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { teamMembers } from '@/lib/data';
-import { Quote, ChevronDown, ChevronUp } from 'lucide-react';
+import { Quote, ChevronDown, ChevronUp, Maximize2 } from 'lucide-react';
 import { Animated, fadeUp, scaleUp } from '@/components/ui/animated';
 import { cn } from '@/lib/utils';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const registrations = [
     { name: "SECP", logo: "/assets/SECP.png" },
@@ -50,8 +57,6 @@ const ScrollingLogos = () => (
 );
 
 const LeadershipCard = ({ member }: { member: any }) => {
-    const [isExpanded, setIsExpanded] = useState(false);
-
     return (
         <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 border-border/50 h-full group bg-background/40 backdrop-blur-sm">
             <CardContent className="p-8">
@@ -68,24 +73,48 @@ const LeadershipCard = ({ member }: { member: any }) => {
                         <p className="font-headline text-sm font-bold text-primary uppercase tracking-tighter mb-4">{member.title}</p>
                         {member.description && (
                             <div className="relative">
-                                <p className={cn(
-                                    "text-sm text-muted-foreground leading-relaxed transition-all duration-300",
-                                    !isExpanded && "line-clamp-3"
-                                )}>
+                                <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
                                     {member.description}
                                 </p>
-                                <Button 
-                                    variant="link" 
-                                    size="sm" 
-                                    onClick={() => setIsExpanded(!isExpanded)}
-                                    className="mt-2 h-auto p-0 text-primary font-bold hover:no-underline"
-                                >
-                                    {isExpanded ? (
-                                        <span className="flex items-center gap-1">See less <ChevronUp className="h-4 w-4" /></span>
-                                    ) : (
-                                        <span className="flex items-center gap-1">See more <ChevronDown className="h-4 w-4" /></span>
-                                    )}
-                                </Button>
+                                
+                                <Dialog>
+                                    <DialogTrigger asChild>
+                                        <Button 
+                                            variant="link" 
+                                            size="sm" 
+                                            className="mt-2 h-auto p-0 text-primary font-bold hover:no-underline flex items-center gap-1"
+                                        >
+                                            See more <Maximize2 className="h-3 w-3" />
+                                        </Button>
+                                    </DialogTrigger>
+                                    <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+                                        <DialogHeader>
+                                            <DialogTitle className="text-3xl font-headline font-bold text-primary">
+                                                {member.name}
+                                            </DialogTitle>
+                                            <p className="text-sm font-headline font-bold uppercase tracking-widest text-muted-foreground">
+                                                {member.title}
+                                            </p>
+                                        </DialogHeader>
+                                        <div className="mt-6 flex flex-col md:flex-row gap-8 items-start">
+                                            <div className="relative w-full md:w-48 aspect-square shrink-0 rounded-xl overflow-hidden border-2 border-primary/20">
+                                                <Image 
+                                                    src={member.imageUrl} 
+                                                    alt={member.name} 
+                                                    fill 
+                                                    className="object-cover"
+                                                />
+                                            </div>
+                                            <div className="flex-1">
+                                                <div className="prose prose-invert max-w-none">
+                                                    <p className="text-base text-foreground leading-relaxed whitespace-pre-line">
+                                                        {member.description}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </DialogContent>
+                                </Dialog>
                             </div>
                         )}
                     </div>
