@@ -7,7 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { teamMembers } from '@/lib/data';
-import { Quote, ChevronDown, ChevronUp, Maximize2 } from 'lucide-react';
+import { Quote, Maximize2 } from 'lucide-react';
 import { Animated, fadeUp, scaleUp } from '@/components/ui/animated';
 import { cn } from '@/lib/utils';
 import {
@@ -87,7 +87,7 @@ const LeadershipCard = ({ member }: { member: any }) => {
                                             See more <Maximize2 className="h-3 w-3" />
                                         </Button>
                                     </DialogTrigger>
-                                    <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+                                    <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
                                         <DialogHeader>
                                             <DialogTitle className="text-3xl font-headline font-bold text-primary">
                                                 {member.name}
@@ -97,7 +97,7 @@ const LeadershipCard = ({ member }: { member: any }) => {
                                             </p>
                                         </DialogHeader>
                                         <div className="mt-6 flex flex-col md:flex-row gap-8 items-start">
-                                            <div className="relative w-full md:w-48 aspect-square shrink-0 rounded-xl overflow-hidden border-2 border-primary/20">
+                                            <div className="relative w-full md:w-64 aspect-[3/4] shrink-0 rounded-xl overflow-hidden border-2 border-primary/20 shadow-xl">
                                                 <Image 
                                                     src={member.imageUrl} 
                                                     alt={member.name} 
