@@ -1,17 +1,15 @@
 
+'use client';
+
 import Image from 'next/image';
+import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 import { teamMembers } from '@/lib/data';
-import type { Metadata } from 'next';
-import { Quote } from 'lucide-react';
+import { Quote, ChevronDown, ChevronUp } from 'lucide-react';
 import { Animated, fadeUp, scaleUp } from '@/components/ui/animated';
 import { cn } from '@/lib/utils';
-
-export const metadata: Metadata = {
-    title: 'About Us | Our Mission, Values, and Team',
-    description: 'Learn about the mission, values, and dedicated team behind Rust Innovations, driving innovation and excellence in the tech industry.',
-};
 
 const registrations = [
     { name: "SECP", logo: "/assets/SECP.png" },
@@ -20,7 +18,7 @@ const registrations = [
     { name: "Lahore Chamber", logo: "/assets/chamber_lahore.png" },
     { name: "IPO", logo: "/assets/IPO.png" },
     { name: "FBR", logo: "/assets/FBR.jpeg"},
-    { name: "PT Bank Mandiri", logo: "/assets/PT Bank Mandiri.jpeg"},
+    { name: "PT Bank Mandiri", logo: "/assets/PT_Bank_Mandiri.png"},
     { name: "Bank Central Asia", logo: "/assets/Bank Central Asia.jpeg"},
     { name: "Direktorat Jenderal Pajak", logo: "/assets/Direktorat Jenderal Pajak.jpeg"},
     { name: "Ministry of Law and Human Rights", logo: "/assets/MINISTRY OF LAW AND HUMAN RIGHTS.jpeg"}
@@ -51,6 +49,51 @@ const ScrollingLogos = () => (
     </div>
 );
 
+const LeadershipCard = ({ member }: { member: any }) => {
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    return (
+        <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 border-border/50 h-full group bg-background/40 backdrop-blur-sm">
+            <CardContent className="p-8">
+                <div className="flex flex-col md:flex-row gap-6 items-start">
+                    <Avatar className={cn(
+                        "h-24 w-24 border-4 border-primary/20 shrink-0",
+                        member.imageUrl.includes('male.png') || member.imageUrl.includes('female.png') ? "bg-muted" : ""
+                    )}>
+                        <AvatarImage src={member.imageUrl} alt={member.name} className="object-cover" />
+                        <AvatarFallback>{member.name.split(' ').map((n: string) => n[0]).join('')}</AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1">
+                        <h3 className="font-headline text-2xl font-bold group-hover:text-primary transition-colors">{member.name}</h3>
+                        <p className="font-headline text-sm font-bold text-primary uppercase tracking-tighter mb-4">{member.title}</p>
+                        {member.description && (
+                            <div className="relative">
+                                <p className={cn(
+                                    "text-sm text-muted-foreground leading-relaxed transition-all duration-300",
+                                    !isExpanded && "line-clamp-3"
+                                )}>
+                                    {member.description}
+                                </p>
+                                <Button 
+                                    variant="link" 
+                                    size="sm" 
+                                    onClick={() => setIsExpanded(!isExpanded)}
+                                    className="mt-2 h-auto p-0 text-primary font-bold hover:no-underline"
+                                >
+                                    {isExpanded ? (
+                                        <span className="flex items-center gap-1">See less <ChevronUp className="h-4 w-4" /></span>
+                                    ) : (
+                                        <span className="flex items-center gap-1">See more <ChevronDown className="h-4 w-4" /></span>
+                                    )}
+                                </Button>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </CardContent>
+        </Card>
+    );
+};
 
 export default function AboutPage() {
     return (
@@ -128,31 +171,10 @@ export default function AboutPage() {
                             The driving force behind our innovation and success.
                         </p>
                     </Animated>
-                    <div className="mt-12 grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+                    <div className="mt-12 grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-2">
                         {teamMembers.map((member, i) => (
                              <Animated as="div" key={member.id} variants={scaleUp} delay={i * 0.1}>
-                                <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 border-border/50 h-full group bg-background/40 backdrop-blur-sm">
-                                    <CardContent className="p-8">
-                                        <div className="flex flex-col md:flex-row gap-6 items-start">
-                                            <Avatar className={cn(
-                                                "h-24 w-24 border-4 border-primary/20 shrink-0",
-                                                member.imageUrl.includes('male.png') || member.imageUrl.includes('female.png') ? "bg-muted" : ""
-                                            )}>
-                                                <AvatarImage src={member.imageUrl} alt={member.name} className="object-cover" />
-                                                <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                                            </Avatar>
-                                            <div className="flex-1">
-                                                <h3 className="font-headline text-2xl font-bold group-hover:text-primary transition-colors">{member.name}</h3>
-                                                <p className="font-headline text-sm font-bold text-primary uppercase tracking-tighter mb-4">{member.title}</p>
-                                                {member.description && (
-                                                    <p className="text-sm text-muted-foreground leading-relaxed">
-                                                        {member.description}
-                                                    </p>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </CardContent>
-                                </Card>
+                                <LeadershipCard member={member} />
                             </Animated>
                         ))}
                     </div>
