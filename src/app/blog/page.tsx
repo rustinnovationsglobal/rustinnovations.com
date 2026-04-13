@@ -27,13 +27,14 @@ export default function BlogPage() {
                 {blogPosts.map((post, i) => (
                     <Animated key={post.id} variants={scaleUp} delay={i * 0.1}>
                         <Card className="group flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/10">
-                             <Link href={`/blog/${post.id}`} className="block" aria-label={`Read more about ${post.title}`}>
+                             <Link href={`/blog/${post.id}`} className="block" aria-label={`Read the full article about ${post.title}`}>
                                 <div className="relative h-56 w-full">
                                     <Image
                                         src={post.imageUrl}
                                         alt={post.title}
                                         fill
                                         className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                         data-ai-hint={post.imageHint}
                                     />
                                 </div>
@@ -45,7 +46,7 @@ export default function BlogPage() {
                                     ))}
                                 </div>
                                 <CardTitle className="pt-2 font-headline text-xl">
-                                    <Link href={`/blog/${post.id}`} className="hover:text-primary transition-colors">
+                                    <Link href={`/blog/${post.id}`} className="hover:text-primary transition-colors" aria-label={`Go to article: ${post.title}`}>
                                         {post.title}
                                     </Link>
                                 </CardTitle>
@@ -54,7 +55,7 @@ export default function BlogPage() {
                                 </p>
                             </CardHeader>
                             <CardContent className="flex-1">
-                               <p className="text-muted-foreground">{post.excerpt}</p>
+                               <p className="text-muted-foreground line-clamp-3">{post.excerpt}</p>
                             </CardContent>
                         </Card>
                     </Animated>

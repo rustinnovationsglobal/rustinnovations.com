@@ -56,7 +56,7 @@ export function WhatsappFAB({ phoneNumber }: { phoneNumber: string }) {
                             href={`https://wa.me/${phoneNumber.replace(/[^0-9]/g, '')}`} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            aria-label="Contact us on WhatsApp for immediate support"
+                            aria-label="Contact Rust Innovations on WhatsApp for immediate digital project support"
                             className="focus-visible:ring-4 focus-visible:ring-primary rounded-full block"
                         >
                             <motion.div

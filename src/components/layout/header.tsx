@@ -84,7 +84,7 @@ export function Header() {
               <div className="hidden md:flex">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" aria-label="View our product ecosystem" className="p-2">
+                    <Button variant="ghost" aria-label="Open our digital product ecosystem menu" className="p-2">
                       <span className="dot-grid-3x3" aria-hidden="true">
                         {Array.from({ length: 9 }).map((_, i) => (
                           <span key={i} className="dot-grid-3x3-dot" />
@@ -103,7 +103,7 @@ export function Header() {
                                 query: { subject: `Inquiry about ${product.name}` },
                               }}
                               className="flex h-full w-full flex-col items-center justify-center gap-2 rounded-md p-2 text-center transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-primary outline-none"
-                              aria-label={`Inquire about ${product.name}`}
+                              aria-label={`Inquire about our ${product.name} product`}
                             >
                               <Image
                                 src={product.imageUrl}
@@ -128,7 +128,7 @@ export function Header() {
               </div>
 
               {/* Contact Button */}
-              <Button asChild className="hidden md:flex transition-transform duration-300 hover:scale-110" aria-label="Contact our team">
+              <Button asChild className="hidden md:flex transition-transform duration-300 hover:scale-110" aria-label="Contact the Rust Innovations team for your project">
                 <Link href="/contact">Contact Us</Link>
               </Button>
 
@@ -136,7 +136,7 @@ export function Header() {
               <div className="flex items-center md:hidden">
                 <Sheet open={isMenuOpen} onOpenChange={setMenuOpen}>
                   <SheetTrigger asChild>
-                    <Button variant="ghost" size="icon" aria-label="Open navigation menu">
+                    <Button variant="ghost" size="icon" aria-label="Open mobile navigation menu">
                       <Menu className="h-6 w-6" />
                     </Button>
                   </SheetTrigger>
@@ -174,6 +174,7 @@ export function Header() {
                             'text-lg font-medium transition-colors hover:text-primary py-2',
                             pathname === '/contact' ? 'text-primary' : 'text-foreground'
                           )}
+                          aria-label="Contact us to discuss your digital needs"
                         >
                           Contact Us
                         </Link>
@@ -204,7 +205,7 @@ export function Header() {
                   }}
                   onClick={() => setProductsModalOpen(false)}
                   className="flex flex-col items-center gap-2 rounded-md p-2 text-center transition-colors hover:bg-accent"
-                  aria-label={`Inquire about ${product.name}`}
+                  aria-label={`Inquire about our ${product.name} product`}
                 >
                   <Image
                     src={product.imageUrl}

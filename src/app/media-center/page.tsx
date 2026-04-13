@@ -1,6 +1,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { blogPosts } from '@/lib/data';
@@ -8,8 +9,12 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import type { Metadata } from 'next';
 import { format } from 'date-fns';
 import { Animated, fadeUp, scaleUp } from '@/components/ui/animated';
-import { AISummarizer } from '@/components/media-center/ai-summarizer';
 import { Inbox } from 'lucide-react';
+
+// Dynamically import the AI summarizer to reduce initial JS payload
+const AISummarizer = dynamic(() => import('@/components/media-center/ai-summarizer').then(mod => mod.AISummarizer), {
+  loading: () => <div className="h-40 flex items-center justify-center">Loading Summarizer...</div>
+});
 
 export const metadata: Metadata = {
     title: 'Media Center & Blog | Tech Insights and News',
@@ -30,6 +35,7 @@ export default function MediaCenterPage() {
                         alt={heroImage.description}
                         fill
                         className="object-cover"
+                        sizes="100vw"
                         data-ai-hint={heroImage.imageHint}
                         priority
                     />
@@ -47,7 +53,7 @@ export default function MediaCenterPage() {
                 </div>
             </section>
 
-            {/* AI Summarizer Section */}
+            {/* AI Summarizer Section (Dynamically Loaded) */}
             <AISummarizer />
 
             {/* Blog Posts Section */}
@@ -63,13 +69,14 @@ export default function MediaCenterPage() {
                         {blogPosts.map((post, i) => (
                             <Animated key={post.id} variants={scaleUp} delay={i * 0.1}>
                                 <Card className="group flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/10">
-                                     <Link href={`/blog/${post.id}`} className="block">
+                                     <Link href={`/blog/${post.id}`} className="block" aria-label={`Read the full article about ${post.title}`}>
                                         <div className="relative h-56 w-full">
                                             <Image
                                                 src={post.imageUrl}
                                                 alt={post.title}
                                                 fill
                                                 className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                                 data-ai-hint={post.imageHint}
                                             />
                                         </div>
@@ -81,7 +88,7 @@ export default function MediaCenterPage() {
                                             ))}
                                         </div>
                                         <CardTitle className="pt-2 font-headline text-xl">
-                                            <Link href={`/blog/${post.id}`} className="hover:text-primary transition-colors">
+                                            <Link href={`/blog/${post.id}`} className="hover:text-primary transition-colors" aria-label={`Explore the article: ${post.title}`}>
                                                 {post.title}
                                             </Link>
                                         </CardTitle>
@@ -90,7 +97,7 @@ export default function MediaCenterPage() {
                                         </p>
                                     </CardHeader>
                                     <CardContent className="flex-1">
-                                       <p className="text-muted-foreground">{post.excerpt}</p>
+                                       <p className="text-muted-foreground line-clamp-3">{post.excerpt}</p>
                                     </CardContent>
                                 </Card>
                             </Animated>

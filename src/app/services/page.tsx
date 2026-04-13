@@ -33,7 +33,7 @@ export default function ServicesPage() {
               </CardHeader>
               <CardContent className="flex flex-1 flex-col">
                 <CardDescription className="flex-1">{service.longDescription}</CardDescription>
-                <Button asChild className="mt-6 w-full transition-transform duration-300 hover:scale-110">
+                <Button asChild className="mt-6 w-full transition-transform duration-300 hover:scale-110" aria-label={`Request a quote for our ${service.title} service`}>
                   <Link href={{ pathname: '/contact', query: { subject: `Quote for ${service.title}` }}}>Request a Quote</Link>
                 </Button>
               </CardContent>

@@ -180,10 +180,10 @@ export default function Home() {
                       asChild
                       variant="link"
                       className="p-0 text-white"
-                      aria-label={`Learn more about ${service.title}`}
+                      aria-label={`Learn more about our ${service.title} services`}
                     >
                       <Link href="/services">
-                        Learn More <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                        Explore {service.title} <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                       </Link>
                     </Button>
                   </div>
