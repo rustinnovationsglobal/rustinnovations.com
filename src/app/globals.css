@@ -1,3 +1,4 @@
+
 /* Animated pink to red gradient for homepage heading */
 .animated-pinkred-gradient {
   background: linear-gradient(90deg, #ec4899, #ef4444, #b50517, #ec4899);
@@ -35,7 +36,7 @@ html {
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 7.5%;
     --popover-foreground: 0 0% 98%;
-    --primary: 0 100% 27.1%;
+    --primary: 0 100% 32%; /* Increased lightness from 27.1% for better contrast */
     --primary-foreground: 0 0% 98%;
     --secondary: 0 0% 14.9%;
     --secondary-foreground: 0 0% 98%;
@@ -45,20 +46,20 @@ html {
     --accent-foreground: 0 0% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
+    --border: 0 0% 18%;
     --input: 0 0% 14.9%;
-    --ring: 0 100% 27.1%;
+    --ring: 0 100% 32%;
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 0 0% 10%; /* #1A1A1A */
+    --background: 0 0% 10%; 
     --foreground: 0 0% 98%;
-    --card: 0 0% 7.5%; /* #131313, close to #121212 */
+    --card: 0 0% 7.5%;
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 7.5%;
     --popover-foreground: 0 0% 98%;
-    --primary: 0 100% 27.1%; /* #8B0000 */
+    --primary: 0 100% 32%;
     --primary-foreground: 0 0% 98%;
     --secondary: 0 0% 14.9%;
     --secondary-foreground: 0 0% 98%;
@@ -68,9 +69,9 @@ html {
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
+    --border: 0 0% 18%;
     --input: 0 0% 14.9%;
-    --ring: 0 100% 27.1%;
+    --ring: 0 100% 32%;
   }
 }
 

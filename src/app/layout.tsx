@@ -1,5 +1,5 @@
 
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { Inter, PT_Sans, Space_Grotesk } from 'next/font/google';
 import { Toaster } from '@/components/ui/toaster';
@@ -30,6 +30,12 @@ const spaceGrotesk = Space_Grotesk({
   display: 'swap',
 });
 
+export const viewport: Viewport = {
+  themeColor: '#8B0000',
+  width: 'device-width',
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.rustinnovations.com'),
   title: {
@@ -56,6 +62,15 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://www.rustinnovations.com',
+    siteName: 'Rust Innovations',
+    title: 'Rust Innovations | Digital Solutions & Tech Services',
+    description: 'Expert digital solutions, web development, and software consultancy.',
+    images: [{ url: '/assets/logo.svg', width: 800, height: 600 }],
   },
 };
 

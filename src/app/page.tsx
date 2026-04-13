@@ -1,6 +1,4 @@
 
-'use client';
-
 import Image from 'next/image';
 import React from 'react';
 import Link from 'next/link';
@@ -19,19 +17,19 @@ import { Animated, fadeUp, scaleUp } from '@/components/ui/animated';
 
 const features = [
   {
-    icon: <ShieldCheck className="h-10 w-10 text-primary" />,
+    icon: <ShieldCheck className="h-10 w-10 text-primary" aria-hidden="true" />,
     title: 'Unmatched Reliability',
     description:
       'Our solutions are built on a foundation of security and trust, ensuring your operations are always protected.',
   },
   {
-    icon: <Lightbulb className="h-10 w-10 text-primary" />,
+    icon: <Lightbulb className="h-10 w-10 text-primary" aria-hidden="true" />,
     title: 'Innovative Strategies',
     description:
       'We pioneer new approaches and leverage cutting-edge technology to keep you ahead of the curve.',
   },
   {
-    icon: <TrendingUp className="h-10 w-10 text-primary" />,
+    icon: <TrendingUp className="h-10 w-10 text-primary" aria-hidden="true" />,
     title: 'Growth-Oriented Results',
     description:
       'Our focus is on delivering tangible outcomes that drive growth and maximize your return on investment.',
@@ -65,26 +63,29 @@ const testimonials = [
   },
 ];
 
-const Home = () => {
+export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative h-[60vh] w-full text-white md:h-[80vh]">
+      <section className="relative h-[60vh] w-full overflow-hidden text-white md:h-[80vh]">
         <video
           autoPlay
           loop
           muted
           playsInline
           className="absolute inset-0 h-full w-full object-cover opacity-10"
+          aria-label="Abstract background video showing digital connections"
+          poster="/assets/video-poster.jpg"
         >
           <source src="/assets/bg.mp4" type="video/mp4" />
+          <track kind="captions" />
+          Your browser does not support the video tag.
         </video>
         <div className="absolute inset-0 bg-gradient-to-t from-background via-black/80 to-black/60" />
-        <div className="relative z-10 flex h-full flex-col items-center justify-center text-center">
+        <div className="relative z-10 flex h-full flex-col items-center justify-center text-center px-4">
             <Animated variants={fadeUp}>
               <h1
                 className="relative select-none font-headline font-extrabold text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-[6rem] leading-[1.05] animated-pinkred-gradient group"
-                style={{ fontFamily: 'Inter, PT Sans, Space Grotesk, sans-serif' }}
               >
                 Rust Innovations
               </h1>
@@ -100,10 +101,10 @@ const Home = () => {
               </p>
             </Animated>
             <Animated variants={fadeUp} delay={0.3}>
-              <Button asChild size="lg" className="mt-8 group transition-transform duration-300 hover:scale-110">
+              <Button asChild size="lg" className="mt-8 group transition-transform duration-300 hover:scale-110" aria-label="Explore our digital services">
                 <Link href="/services">
                   Explore Our Services
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" aria-hidden="true" />
                 </Link>
               </Button>
             </Animated>
@@ -161,13 +162,13 @@ const Home = () => {
                 variants={scaleUp}
                 delay={i * 0.1}
               >
-                <div className="group relative overflow-hidden rounded-lg">
+                <div className="group relative overflow-hidden rounded-lg aspect-video">
                   <Image
                     src={service.imageUrl}
-                    alt={service.title}
-                    width={400}
-                    height={300}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    alt={`${service.title} - Digital service representation`}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     data-ai-hint={service.imageHint}
                   />
                   <div className="absolute inset-0 bg-black/60 transition-colors group-hover:bg-black/70" />
@@ -179,9 +180,10 @@ const Home = () => {
                       asChild
                       variant="link"
                       className="p-0 text-white"
+                      aria-label={`Learn more about ${service.title}`}
                     >
                       <Link href="/services">
-                        Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                        Learn More <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                       </Link>
                     </Button>
                   </div>
@@ -190,7 +192,7 @@ const Home = () => {
             ))}
           </div>
           <Animated variants={fadeUp} className="mt-12 text-center">
-            <Button asChild size="lg" variant="outline" className="transition-transform duration-300 hover:scale-110">
+            <Button asChild size="lg" variant="outline" className="transition-transform duration-300 hover:scale-110" aria-label="View all of our core services">
               <Link href="/services">View All Services</Link>
             </Button>
           </Animated>
@@ -210,18 +212,18 @@ const Home = () => {
               <Animated key={testimonial.name} variants={scaleUp} delay={i * 0.1}>
                 <Card className="flex flex-col h-full">
                   <CardContent className="flex-1 p-6">
-                    <p className="italic text-muted-foreground">
+                    <blockquote className="italic text-muted-foreground">
                       "{testimonial.quote}"
-                    </p>
+                    </blockquote>
                   </CardContent>
                   <CardHeader className="flex-row items-center gap-4 border-t pt-6">
                     <Avatar>
                       <AvatarImage
                         src={testimonial.image}
-                        alt={testimonial.name}
+                        alt={`${testimonial.name} - ${testimonial.title}`}
                         data-ai-hint={testimonial.imageHint ?? ''}
                       />
-                      <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                      <AvatarFallback aria-hidden="true">{testimonial.name.charAt(0)}</AvatarFallback>
                     </Avatar>
                     <div>
                       <p className="font-semibold">{testimonial.name}</p>
@@ -239,5 +241,3 @@ const Home = () => {
     </div>
   );
 }
-
-export default Home;
