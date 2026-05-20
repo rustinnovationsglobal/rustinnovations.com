@@ -73,7 +73,7 @@ export default function Home() {
           loop
           muted
           playsInline
-          className="absolute inset-0 h-full w-full object-cover opacity-10"
+          className="absolute inset-0 h-full w-full object-cover opacity-5"
           aria-label="Abstract background video showing digital connections"
           poster="/assets/video-poster.jpg"
         >
@@ -81,7 +81,7 @@ export default function Home() {
           <track kind="captions" />
           Your browser does not support the video tag.
         </video>
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-black/80 to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/10 via-black/40 to-black/20" />
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center px-4">
             <Animated variants={fadeUp}>
               <h1

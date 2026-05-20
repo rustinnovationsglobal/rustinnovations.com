@@ -93,30 +93,53 @@ export function Header() {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="w-[360px] p-4" align="end">
+                    <h3 className="mb-3 text-sm font-semibold text-foreground text-center">Our Products</h3>
                     {products.length > 0 ? (
                       <div className="grid grid-cols-3 gap-4">
-                        {products.slice(0, 9).map((product) => (
-                          <DropdownMenuItem key={product.id} asChild className="p-0 focus:bg-transparent">
-                            <Link
-                              href={{
-                                pathname: '/contact',
-                                query: { subject: `Inquiry about ${product.name}` },
-                              }}
-                              className="flex h-full w-full flex-col items-center justify-center gap-2 rounded-md p-2 text-center transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-primary outline-none"
-                              aria-label={`Inquire about our ${product.name} product`}
-                            >
-                              <Image
-                                src={product.imageUrl}
-                                alt=""
-                                width={48}
-                                height={48}
-                                className="rounded-md object-cover"
-                                data-ai-hint={product.imageHint}
-                              />
-                              <p className="w-full truncate text-xs font-semibold">{product.name}</p>
-                            </Link>
-                          </DropdownMenuItem>
-                        ))}
+                        {products.slice(0, 9).map((product) => {
+                          const isRust = product.id === 'rustwheel';
+                          return (
+                            <DropdownMenuItem key={product.id} asChild className="p-0 focus:bg-transparent">
+                              <Link
+                                href={product.href || {
+                                  pathname: '/contact',
+                                  query: { subject: `Inquiry about ${product.name}` },
+                                }}
+                                target={product.href ? '_blank' : undefined}
+                                rel={product.href ? 'noopener noreferrer' : undefined}
+                                className={`group flex h-full w-full flex-col items-center justify-center gap-3 rounded-3xl border border-white/10 p-3 text-center shadow-sm shadow-black/10 transition-all duration-200 cursor-pointer hover:scale-105 hover:border-primary/60 hover:border-2`}
+                                aria-label={product.href ? `Visit ${product.name} external page` : `Inquire about our ${product.name} product`}
+                              >
+                                {isRust ? (
+                                  <span className="flex h-24 w-24 items-center justify-center rounded-2xl p-2 transition-transform duration-200 transform-gpu group-hover:scale-110">
+                                    <Image
+                                      src={product.imageUrl}
+                                      alt=""
+                                      width={64}
+                                      height={64}
+                                      className="h-full w-full object-contain"
+                                      data-ai-hint={product.imageHint}
+                                    />
+                                  </span>
+                                ) : (
+                                  <span className="flex h-16 w-16 items-center justify-center rounded-3xl bg-white/20 p-2 shadow-inner shadow-black/10 transition duration-300 group-hover:bg-white/25">
+                                    <Image
+                                      src={product.imageUrl}
+                                      alt=""
+                                      width={48}
+                                      height={48}
+                                      className="h-full w-full rounded-2xl object-contain"
+                                      data-ai-hint={product.imageHint}
+                                    />
+                                  </span>
+                                )}
+                                <p className="w-full truncate text-xs font-semibold text-foreground">
+                                  {product.name}
+                                </p>
+                              </Link>
+                            </DropdownMenuItem>
+                          );
+                        })}
                       </div>
                     ) : (
                       <div className="flex h-32 items-center justify-center text-muted-foreground">
@@ -196,28 +219,48 @@ export function Header() {
           </DialogHeader>
           {products.length > 0 ? (
             <div className="grid grid-cols-3 gap-4 py-4 overflow-y-auto max-h-[60vh]">
-              {products.slice(0, 9).map((product) => (
-                <Link
-                  key={product.id}
-                  href={{
-                    pathname: '/contact',
-                    query: { subject: `Inquiry about ${product.name}` },
-                  }}
-                  onClick={() => setProductsModalOpen(false)}
-                  className="flex flex-col items-center gap-2 rounded-md p-2 text-center transition-colors hover:bg-accent"
-                  aria-label={`Inquire about our ${product.name} product`}
-                >
-                  <Image
-                    src={product.imageUrl}
-                    alt=""
-                    width={64}
-                    height={64}
-                    className="rounded-md object-cover"
-                    data-ai-hint={product.imageHint}
-                  />
-                  <p className="w-full truncate text-xs font-semibold">{product.name}</p>
-                </Link>
-              ))}
+              {products.slice(0, 9).map((product) => {
+                const isRust = product.id === 'rustwheel';
+                return (
+                  <Link
+                    key={product.id}
+                    href={product.href || {
+                      pathname: '/contact',
+                      query: { subject: `Inquiry about ${product.name}` },
+                    }}
+                    target={product.href ? '_blank' : undefined}
+                    rel={product.href ? 'noopener noreferrer' : undefined}
+                    onClick={() => setProductsModalOpen(false)}
+                    className={`group flex flex-col items-center gap-3 rounded-3xl border border-white/10 p-3 text-center shadow-sm shadow-black/10 transition-all duration-200 cursor-pointer hover:scale-105 hover:border-primary hover:border-2`}
+                    aria-label={product.href ? `Visit ${product.name} external page` : `Inquire about our ${product.name} product`}
+                  >
+                    {isRust ? (
+                      <span className="flex h-24 w-24 items-center justify-center rounded-2xl p-2 transition-transform duration-200 transform-gpu group-hover:scale-110">
+                        <Image
+                          src={product.imageUrl}
+                          alt=""
+                          width={72}
+                          height={72}
+                          className="h-full w-full object-contain"
+                          data-ai-hint={product.imageHint}
+                        />
+                      </span>
+                    ) : (
+                      <span className="flex h-20 w-20 items-center justify-center rounded-3xl bg-white/20 p-2 shadow-inner shadow-black/10 transition duration-300 group-hover:bg-white/25">
+                        <Image
+                          src={product.imageUrl}
+                          alt=""
+                          width={64}
+                          height={64}
+                          className="h-full w-full rounded-2xl object-contain"
+                          data-ai-hint={product.imageHint}
+                        />
+                      </span>
+                    )}
+                    <p className="w-full truncate text-xs font-semibold text-foreground">{product.name}</p>
+                  </Link>
+                );
+              })}
             </div>
           ) : (
             <div className="flex h-32 items-center justify-center text-muted-foreground">

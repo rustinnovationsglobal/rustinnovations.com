@@ -122,7 +122,17 @@ export const services: Service[] = [
   },
 ];
 
-export const products: Product[] = [];
+export const products: Product[] = [
+  {
+    id: 'rustwheel',
+    name: 'RustWheel',
+    description: 'RustWheel as product of RustInnovations',
+    imageUrl: '/assets/RustWheel.png',
+    imageHint: 'RustWheel logo',
+    specifications: [],
+    href: 'https://play.google.com/store/apps/details?id=com.rustinnovations.rustwheel&hl=en',
+  },
+];
 
 export const teamMembers: TeamMember[] = [
   {
@@ -150,6 +160,14 @@ export const teamMembers: TeamMember[] = [
     imageHint: 'Asadullah Zahid Chief Operational Manager',
   },
   {
+    id: '9',
+    name: 'Ayesha Shabbir',
+    title: 'Exclusive HR Manager',
+    description: 'Ayesha Shabbir leads the Human Resources department with pride and dedication. She builds a strong company culture, supports employee growth, and champions excellent people-first performance across Rust Innovations.',
+    imageUrl: '/assets/female.png',
+    imageHint: 'Ayesha Shabbir Exclusive HR Manager',
+  },
+  {
     id: '5',
     name: 'Muhammad Usman',
     title: 'Country Head – UAE',
@@ -166,20 +184,20 @@ export const teamMembers: TeamMember[] = [
     imageHint: 'Rashid Mahmood Country Head Pakistan',
   },
   {
-    id: '7',
-    name: 'Farhan Kabeer',
-    title: 'Operational Manager Pakistan',
-    description: 'Farhan Kabeer plays an important role in maintaining operational efficiency and regulatory compliance at Rust Innovations Pakistan. As Operational Manager and Head of the Internal Anti-Money Laundering (AML) Unit, he ensures that company processes align with international compliance standards. With strong knowledge of the Pakistani market and experience working with leading companies, Farhan has significantly strengthened the organization’s risk management and compliance frameworks.',
-    imageUrl: '/assets/operational manager pakistan.png',
-    imageHint: 'Farhan Kabeer Operational Manager',
-  },
-  {
     id: '8',
     name: 'Rubab Gull',
     title: 'Global Marketing Manager',
     description: 'Rubab Gull leads the global marketing strategy at Rust Innovations, helping strengthen the company’s brand presence and client relationships worldwide. With over 13 years of experience in design and digital marketing, she has worked with several leading companies in Pakistan and built a strong reputation in the creative industry. She is also a top-rated freelancer on Upwork, a recognition given to professionals who consistently deliver high-quality work and maintain strong client satisfaction. As a member of the Rust Innovations leadership team and board, Rubab plays a key role in shaping marketing strategy and supporting the company’s growth. Her expertise in global client engagement and digital branding has contributed significantly to Rust Innovations successfully serving 3,200+ clients worldwide, making her an important part of the company’s continued expansion.',
     imageUrl: '/assets/female.png',
     imageHint: 'Rubab Gull Global Marketing Manager',
+  },
+  {
+    id: '7',
+    name: 'Farhan Kabeer',
+    title: 'Operational Manager Pakistan',
+    description: 'Farhan Kabeer plays an important role in maintaining operational efficiency and regulatory compliance at Rust Innovations Pakistan. As Operational Manager and Head of the Internal Anti-Money Laundering (AML) Unit, he ensures that company processes align with international compliance standards. With strong knowledge of the Pakistani market and experience working with leading companies, Farhan has significantly strengthened the organization’s risk management and compliance frameworks.',
+    imageUrl: '/assets/operational manager pakistan.png',
+    imageHint: 'Farhan Kabeer Operational Manager',
   },
 ];
 

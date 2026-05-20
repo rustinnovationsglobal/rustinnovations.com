@@ -23,6 +23,7 @@ export type Product = {
   imageUrl: string;
   imageHint: string;
   specifications: string[];
+  href?: string;
 };
 
 export type TeamMember = {
