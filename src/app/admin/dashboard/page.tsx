@@ -1,109 +1,26 @@
 'use client';
 
-import Link from 'next/link';
-
-export default function AdminDashboard() {
-  return (
-    <div className="space-y-8">
-      <div>
-        <h1 className="text-4xl font-bold mb-2">Welcome to Admin Panel</h1>
-        <p className="text-slate-400">Manage employees and publish articles</p>
-      </div>
-
-      {/* Quick Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-          <p className="text-slate-400 text-sm mb-2">Total Employees</p>
-          <p className="text-4xl font-bold">12</p>
-          <Link
-            href="/admin/employees"
-            className="text-red-600 hover:text-red-500 text-sm mt-4 inline-block"
-          >
-            View all →
-          </Link>
-        </div>
-
-        <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-          <p className="text-slate-400 text-sm mb-2">Published Articles</p>
-          <p className="text-4xl font-bold">5</p>
-          <Link
-            href="/admin/articles"
-            className="text-red-600 hover:text-red-500 text-sm mt-4 inline-block"
-          >
-            View all →
-          </Link>
-        </div>
-
-        <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-          <p className="text-slate-400 text-sm mb-2">Core Team Members</p>
-          <p className="text-4xl font-bold">3</p>
-          <Link
-            href="/admin/employees"
-            className="text-red-600 hover:text-red-500 text-sm mt-4 inline-block"
-          >
-            View all →
-          </Link>
-        </div>
-      </div>
-
-      {/* Quick Actions */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-8">
-        <h2 className="text-2xl font-bold mb-6">Quick Actions</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Link
-            href="/admin/employees/new"
-            className="flex items-center gap-4 p-4 bg-slate-700 hover:bg-slate-600 rounded-lg transition"
-          >
-            <span className="text-3xl">👤</span>
-            <div>
-              <p className="font-semibold">Add New Employee</p>
-              <p className="text-slate-400 text-sm">Register a new team member</p>
-            </div>
-          </Link>
-
-          <Link
-            href="/admin/articles/new"
-            className="flex items-center gap-4 p-4 bg-slate-700 hover:bg-slate-600 rounded-lg transition"
-          >
-            <span className="text-3xl">📝</span>
-            <div>
-              <p className="font-semibold">Create Article</p>
-              <p className="text-slate-400 text-sm">Publish a new blog post</p>
-            </div>
-          </Link>
-        </div>
-      </div>
-
-      {/* Recent Activities */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-8">
-        <h2 className="text-2xl font-bold mb-6">Recent Activities</h2>
-        <div className="space-y-4">
-          <div className="flex items-center justify-between pb-4 border-b border-slate-700">
-            <div>
-              <p className="font-semibold">Rashid Mahmood added as Country Head</p>
-              <p className="text-slate-400 text-sm">May 22, 2026</p>
-            </div>
-            <span className="text-green-400 text-sm">✓ Active</span>
-          </div>
-          <div className="flex items-center justify-between pb-4 border-b border-slate-700">
-            <div>
-              <p className="font-semibold">Blog article published</p>
-              <p className="text-slate-400 text-sm">May 20, 2026</p>
-            </div>
-            <span className="text-blue-400 text-sm">Published</span>
-          </div>
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="font-semibold">Employee QR codes generated</p>
-              <p className="text-slate-400 text-sm">May 18, 2026</p>
-            </div>
-            <span className="text-purple-400 text-sm">Generated</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import {
+  supabase,
+  getEmployees,
+  getBlogPosts,
+  getQuotes,
+  uploadSupabaseFile,
+  upsertEmployee,
+  deleteEmployee,
+  upsertBlog,
+  deleteBlog,
+  deleteAllBlogs,
+} from '@/lib/supabase';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import QRCode from 'qrcode';
 
 const defaultEmployee = {
   id: '',
@@ -150,7 +67,6 @@ export default function AdminDashboardPage() {
 
   const [authState, setAuthState] = useState<'unknown' | 'signed-in' | 'signed-out'>('unknown');
   const [session, setSession] = useState<any>(null);
-  const [sessionChecked, setSessionChecked] = useState(false);
   const [activeTab, setActiveTab] = useState<'employees' | 'blogs'>('employees');
   const [editingEmployeeId, setEditingEmployeeId] = useState<string | null>(null);
   const [editingBlogId, setEditingBlogId] = useState<string | null>(null);
@@ -158,28 +74,22 @@ export default function AdminDashboardPage() {
   useEffect(() => {
     let mounted = true;
 
-    const checkSession = async () => {
-      const { data } = await supabase.auth.getSession();
-      if (!mounted) {
-        return;
-      }
-
-      setSessionChecked(true);
-
+    // Get the session first, then subscribe to changes.
+    // onAuthStateChange alone can fire SIGNED_OUT before the token is ready.
+    supabase.auth.getSession().then(({ data }) => {
+      if (!mounted) return;
       if (data.session) {
         setSession(data.session);
         setAuthState('signed-in');
       } else {
         setAuthState('signed-out');
       }
-    };
-
-    checkSession();
+    });
 
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-      if (!mounted) {
-        return;
-      }
+      if (!mounted) return;
+      // Ignore transient events that don't reflect actual sign-in state
+      if (event === 'TOKEN_REFRESHED' || event === 'INITIAL_SESSION') return;
 
       if (session) {
         setSession(session);
@@ -193,13 +103,14 @@ export default function AdminDashboardPage() {
       mounted = false;
       authListener?.subscription.unsubscribe();
     };
-  }, [router]);
+  }, []);
 
   useEffect(() => {
-    if (sessionChecked && authState === 'signed-out') {
+    // Only redirect once we've confirmed there's no session (not while still loading)
+    if (authState === 'signed-out') {
       router.replace('/admin/login');
     }
-  }, [authState, router, sessionChecked]);
+  }, [authState, router]);
 
   useEffect(() => {
     if (authState !== 'signed-in') {
