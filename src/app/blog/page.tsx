@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { blogPosts } from '@/lib/data';
+import { getBlogPosts } from '@/lib/supabase';
 import type { Metadata } from 'next';
 import { format } from 'date-fns';
 import { Animated, fadeUp, scaleUp } from '@/components/ui/animated';
@@ -13,7 +13,11 @@ export const metadata: Metadata = {
     description: 'Read the latest from Rust Innovations. Explore articles on web development, UI/UX design, technology trends, and digital strategy.',
 };
 
-export default function BlogPage() {
+export const dynamic = 'force-dynamic';
+
+export default async function BlogPage() {
+    const blogPosts = await getBlogPosts();
+
     return (
         <div className="container mx-auto px-4 py-16 md:py-24">
             <Animated as="section" variants={fadeUp} className="text-center">

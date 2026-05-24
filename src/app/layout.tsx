@@ -3,12 +3,10 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { Inter, PT_Sans, Space_Grotesk } from 'next/font/google';
 import { Toaster } from '@/components/ui/toaster';
-import { Header } from '@/components/layout/header';
-import { Footer } from '@/components/layout/footer';
 import { PageProgress } from '@/components/page-progress';
-import { WhatsappFAB } from '@/components/whatsapp-fab';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import LenisProvider from './lenis-provider';
+import AppShell from '@/components/app-shell';
 import { cn } from '@/lib/utils';
 
 const inter = Inter({ 
@@ -89,12 +87,7 @@ export default function RootLayout({
         <LenisProvider>
           <TooltipProvider>
             <PageProgress />
-            <div className="flex min-h-screen flex-col">
-              <Header />
-              <main className="flex-1 pt-4">{children}</main>
-              <Footer />
-            </div>
-            <WhatsappFAB phoneNumber="+923264692997" />
+            <AppShell>{children}</AppShell>
             <Toaster />
           </TooltipProvider>
         </LenisProvider>
