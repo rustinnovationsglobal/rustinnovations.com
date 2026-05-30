@@ -132,6 +132,15 @@ export const products: Product[] = [
     specifications: [],
     href: 'https://play.google.com/store/apps/details?id=com.rustinnovations.rustwheel&hl=en',
   },
+  {
+    id: 'rustpass',
+    name: 'RustPass',
+    description: 'RustPass secure employee verification system',
+    imageUrl: '/assets/rustPass.svg',
+    imageHint: 'RustPass logo',
+    specifications: [],
+    href: 'https://rustpass.rustinnovations.com',
+  },
 ];
 
 export const teamMembers: TeamMember[] = [
@@ -225,6 +234,7 @@ export const blogPosts: BlogPost[] = [
         tags: ['Web Development', 'Technology', 'Future'],
         imageUrl: 'https://picsum.photos/seed/blog1/800/400',
         imageHint: 'futuristic code',
+        altText: 'Illustration of futuristic code and web development trends',
         excerpt: 'Explore the upcoming trends in web development for 2025, from AI-powered tools to the evolution of JavaScript frameworks. Stay ahead of the curve and see what\'s next for the web.',
         content: `
 <p>The web development landscape is in a constant state of flux. As we look towards 2025, several key trends are emerging that will shape the future of how we build and interact with websites and applications.</p>
@@ -247,6 +257,7 @@ export const blogPosts: BlogPost[] = [
         tags: ['UI/UX', 'Design', 'User Experience'],
         imageUrl: 'https://picsum.photos/seed/blog2/800/400',
         imageHint: 'design wireframe',
+        altText: 'Design wireframe showing user interface and experience workflows',
         excerpt: 'A deep dive into the principles of user-centric design. Learn how to create interfaces that are not only beautiful but also intuitive, accessible, and a joy to use.',
         content: `
 <p>In today\'s competitive digital world, a great user experience (UX) is not a luxury; it\'s a necessity. User-centric design is a philosophy that places the user at the heart of the design process. This guide will walk you through the core principles.</p>

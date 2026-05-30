@@ -49,6 +49,20 @@ export type BlogPost = {
     tags: string[];
     imageUrl: string;
     imageHint: string;
+    altText: string;
     excerpt: string;
     content: string;
+};
+
+export type Blog = {
+  id: string;
+  featured_image: string;
+  title: string;
+  slug: string;
+  created_at: string;
+  content: string;
+  image_alt: string;
+  author: string;
+  keyword: string | string[];
+  meta_html: string;
 };

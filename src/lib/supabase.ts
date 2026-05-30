@@ -1,14 +1,21 @@
 import { createClient } from '@supabase/supabase-js';
 import { blogPosts } from './data';
-import type { BlogPost } from './types';
+import type { BlogPost, Blog } from './types';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? '';
-const storageBucket = process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET ?? 'public';
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? '';
+const storageBucket = process.env.NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET ?? 'Bob';
+const blogTable = process.env.NEXT_PUBLIC_SUPABASE_BLOG_TABLE ?? 'Blogs';
+
+if (!supabaseUrl) {
+  console.warn(
+    'Missing NEXT_PUBLIC_SUPABASE_URL in environment. Supabase client cannot connect without this value.'
+  );
+}
 
 if (!supabaseAnonKey) {
   console.warn(
-    'Missing NEXT_PUBLIC_SUPABASE_ANON_KEY in environment. Supabase auth will not work correctly.'
+    'Missing NEXT_PUBLIC_SUPABASE_ANON_KEY or NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY in environment. Supabase auth will not work correctly.'
   );
 }
 
@@ -25,10 +32,15 @@ export const isSupabaseConfigured = Boolean(supabaseUrl && supabaseAnonKey);
 
 export type EmployeeRecord = {
   id: string;
+  employee_id: string;
   first_name: string;
   last_name: string;
+  father_name: string;
   email: string;
   role: string;
+  joining_date: string;
+  status: 'Active' | 'Inactive';
+  is_core_member: boolean;
   created_at: string;
   image_url: string;
 };
@@ -53,6 +65,7 @@ function mapBlogRow(row: any): BlogPost {
     imageUrl: row.image_url ?? row.imageUrl ?? row.image ?? '',
     imageHint: row.image_hint ?? row.imageHint ?? '',
     excerpt: row.excerpt ?? row.description ?? '',
+    altText: row.alt_text ?? row.altText ?? row.description ?? '',
     content: row.content ?? row.body ?? '',
   };
 }
@@ -63,9 +76,9 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
   }
 
   const { data, error } = await supabase
-    .from('blogs')
+    .from(blogTable)
     .select('*')
-    .order('published_at', { ascending: false });
+    .order('created_at', { ascending: false });
 
   if (error || !data) {
     return blogPosts;
@@ -80,7 +93,7 @@ export async function getBlogPost(id: string): Promise<BlogPost | undefined> {
   }
 
   const { data, error } = await supabase
-    .from('blogs')
+    .from(blogTable)
     .select('*')
     .eq('id', id)
     .limit(1)
@@ -124,6 +137,43 @@ export async function getEmployee(id: string): Promise<EmployeeRecord | null> {
   }
 
   return data as EmployeeRecord;
+}
+
+export async function getEmployeeByEmployeeId(employeeId: string): Promise<EmployeeRecord | null> {
+  if (!isSupabaseConfigured) {
+    return null;
+  }
+
+  const { data, error } = await supabase
+    .from('employees')
+    .select('*')
+    .eq('employee_id', employeeId)
+    .limit(1)
+    .single();
+
+  if (error || !data) {
+    return null;
+  }
+
+  return data as EmployeeRecord;
+}
+
+export async function getCoreTeamMembers(): Promise<EmployeeRecord[]> {
+  if (!isSupabaseConfigured) {
+    return [];
+  }
+
+  const { data, error } = await supabase
+    .from('employees')
+    .select('*')
+    .eq('is_core_member', true)
+    .order('created_at', { ascending: false });
+
+  if (error || !data) {
+    return [];
+  }
+
+  return data as EmployeeRecord[];
 }
 
 export async function getQuotes(): Promise<QuoteRecord[]> {
@@ -195,7 +245,7 @@ export async function upsertBlog(blog: BlogRecord) {
     return null;
   }
 
-  const { error } = await supabase.from('blogs').upsert([blog], {
+  const { error } = await supabase.from(blogTable).upsert([blog], {
     onConflict: 'id',
   });
   return error;
@@ -206,8 +256,75 @@ export async function deleteBlog(id: string) {
     return null;
   }
 
-  const { error } = await supabase.from('blogs').delete().eq('id', id);
+  const { error } = await supabase.from(blogTable).delete().eq('id', id);
   return error;
+}
+
+// New helpers returning the public `Blog` shape used by the media center pages
+function mapBlogRowToBlog(row: any): Blog {
+  return {
+    id: String(row.id ?? ''),
+    featured_image: row.featured_image ?? row.featured_image ?? row.featured_image ?? '',
+    title: row.title ?? '',
+    slug: row.slug ?? row.id ?? '',
+    created_at: row.created_at ?? new Date().toISOString(),
+    content: row.content ?? row.body ?? '',
+    image_alt: row.image_alt ?? row.image_alt ?? row.image_alt ?? '',
+    author: row.author ?? '',
+    keyword: Array.isArray(row.keyword)
+      ? row.keyword.map((item: any) => String(item))
+      : typeof row.keyword === 'string'
+      ? row.keyword
+      : [],
+    meta_html: row.meta_html ?? '',
+  };
+}
+
+export async function getAllBlogs(): Promise<Blog[]> {
+  try {
+    if (!isSupabaseConfigured) {
+      // Fallback: map blogPosts if available
+      return (blogPosts || []).map((row: any) => mapBlogRowToBlog(row));
+    }
+
+    const { data, error } = await supabase
+      .from(blogTable)
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.error('Supabase getAllBlogs error:', JSON.stringify(error, null, 2));
+      return [];
+    }
+
+    return (data ?? []).map((row: any) => mapBlogRowToBlog(row));
+  } catch (err) {
+    console.error('Unexpected error in getAllBlogs:', err);
+    return [];
+  }
+}
+
+export async function getBlogBySlug(slug: string): Promise<Blog | null> {
+  try {
+    if (!isSupabaseConfigured) return null;
+
+    const { data, error } = await supabase
+      .from(blogTable)
+      .select('*')
+      .eq('slug', slug)
+      .limit(1)
+      .maybeSingle();
+
+    if (error) {
+      console.error(`Supabase getBlogBySlug(${slug}) error:`, JSON.stringify(error, null, 2));
+      return null;
+    }
+
+    return data ? mapBlogRowToBlog(data) : null;
+  } catch (err) {
+    console.error(`Unexpected error in getBlogBySlug(${slug}):`, err);
+    return null;
+  }
 }
 
 export async function deleteAllBlogs() {
@@ -215,6 +332,6 @@ export async function deleteAllBlogs() {
     return null;
   }
 
-  const { error } = await supabase.from('blogs').delete().neq('id', '');
+  const { error } = await supabase.from(blogTable).delete().neq('id', '');
   return error;
 }

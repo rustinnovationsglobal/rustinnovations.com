@@ -95,9 +95,9 @@ export function Header() {
                   <DropdownMenuContent className="w-[360px] p-4" align="end">
                     <h3 className="mb-3 text-sm font-semibold text-foreground text-center">Our Products</h3>
                     {products.length > 0 ? (
-                      <div className="grid grid-cols-3 gap-4">
+                      <div className="grid grid-cols-3 gap-5">
                         {products.slice(0, 9).map((product) => {
-                          const isRust = product.id === 'rustwheel';
+                          const hasProductImage = ['rustwheel', 'rustpass'].includes(product.id);
                           return (
                             <DropdownMenuItem key={product.id} asChild className="p-0 focus:bg-transparent">
                               <Link
@@ -107,16 +107,16 @@ export function Header() {
                                 }}
                                 target={product.href ? '_blank' : undefined}
                                 rel={product.href ? 'noopener noreferrer' : undefined}
-                                className={`group flex h-full w-full flex-col items-center justify-center gap-3 rounded-3xl border border-white/10 p-3 text-center shadow-sm shadow-black/10 transition-all duration-200 cursor-pointer hover:scale-105 hover:border-primary/60 hover:border-2`}
+                                className={`group flex min-h-[120px] w-[120px] flex-col items-center justify-center gap-2 rounded-3xl border border-white/10 bg-slate-950/80 p-3 text-center shadow-sm shadow-black/10 transition-all duration-200 cursor-pointer hover:scale-105 hover:border-primary/60 hover:border-2`}
                                 aria-label={product.href ? `Visit ${product.name} external page` : `Inquire about our ${product.name} product`}
                               >
-                                {isRust ? (
-                                  <span className="flex h-24 w-24 items-center justify-center rounded-2xl p-2 transition-transform duration-200 transform-gpu group-hover:scale-110">
+                                {hasProductImage ? (
+                                  <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/5 p-2 transition-transform duration-200 transform-gpu group-hover:scale-110">
                                     <Image
                                       src={product.imageUrl}
-                                      alt=""
-                                      width={64}
-                                      height={64}
+                                      alt={product.imageHint}
+                                      width={48}
+                                      height={48}
                                       className="h-full w-full object-contain"
                                       data-ai-hint={product.imageHint}
                                     />
@@ -125,7 +125,7 @@ export function Header() {
                                   <span className="flex h-16 w-16 items-center justify-center rounded-3xl bg-white/20 p-2 shadow-inner shadow-black/10 transition duration-300 group-hover:bg-white/25">
                                     <Image
                                       src={product.imageUrl}
-                                      alt=""
+                                      alt={product.imageHint}
                                       width={48}
                                       height={48}
                                       className="h-full w-full rounded-2xl object-contain"
@@ -218,9 +218,9 @@ export function Header() {
             <DialogTitle>Our Products</DialogTitle>
           </DialogHeader>
           {products.length > 0 ? (
-            <div className="grid grid-cols-3 gap-4 py-4 overflow-y-auto max-h-[60vh]">
+            <div className="grid grid-cols-3 gap-5 py-4 overflow-y-auto max-h-[60vh]">
               {products.slice(0, 9).map((product) => {
-                const isRust = product.id === 'rustwheel';
+                const hasProductImage = ['rustwheel', 'rustpass'].includes(product.id);
                 return (
                   <Link
                     key={product.id}
@@ -231,16 +231,16 @@ export function Header() {
                     target={product.href ? '_blank' : undefined}
                     rel={product.href ? 'noopener noreferrer' : undefined}
                     onClick={() => setProductsModalOpen(false)}
-                    className={`group flex flex-col items-center gap-3 rounded-3xl border border-white/10 p-3 text-center shadow-sm shadow-black/10 transition-all duration-200 cursor-pointer hover:scale-105 hover:border-primary hover:border-2`}
+                    className={`group flex h-[120px] w-full flex-col items-center justify-center gap-2 rounded-3xl border border-white/10 bg-slate-950/80 p-3 text-center shadow-sm shadow-black/10 transition-all duration-200 cursor-pointer hover:scale-105 hover:border-primary hover:border-2`}
                     aria-label={product.href ? `Visit ${product.name} external page` : `Inquire about our ${product.name} product`}
                   >
-                    {isRust ? (
-                      <span className="flex h-24 w-24 items-center justify-center rounded-2xl p-2 transition-transform duration-200 transform-gpu group-hover:scale-110">
+                    {hasProductImage ? (
+                      <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/5 p-2 transition-transform duration-200 transform-gpu group-hover:scale-110">
                         <Image
                           src={product.imageUrl}
-                          alt=""
-                          width={72}
-                          height={72}
+                          alt={product.imageHint}
+                          width={48}
+                          height={48}
                           className="h-full w-full object-contain"
                           data-ai-hint={product.imageHint}
                         />
@@ -249,7 +249,7 @@ export function Header() {
                       <span className="flex h-20 w-20 items-center justify-center rounded-3xl bg-white/20 p-2 shadow-inner shadow-black/10 transition duration-300 group-hover:bg-white/25">
                         <Image
                           src={product.imageUrl}
-                          alt=""
+                          alt={product.imageHint}
                           width={64}
                           height={64}
                           className="h-full w-full rounded-2xl object-contain"

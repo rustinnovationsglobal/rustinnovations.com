@@ -117,3 +117,78 @@ html {
     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   }
 }
+
+@layer components {
+  .blog-content {
+    @apply text-sm leading-7 text-slate-200;
+  }
+
+  .blog-content h1,
+  .blog-content h2,
+  .blog-content h3,
+  .blog-content h4,
+  .blog-content h5,
+  .blog-content h6 {
+    @apply mt-10 mb-4 font-semibold text-white;
+  }
+
+  .blog-content h1 {
+    @apply text-4xl;
+  }
+
+  .blog-content h2 {
+    @apply text-3xl;
+  }
+
+  .blog-content h3 {
+    @apply text-2xl;
+  }
+
+  .blog-content p {
+    @apply mb-6;
+  }
+
+  .blog-content ul,
+  .blog-content ol {
+    @apply mb-6 ml-6 space-y-2;
+  }
+
+  .blog-content li {
+    @apply list-disc;
+  }
+
+  .blog-content ol li {
+    list-style-type: decimal;
+  }
+
+  .blog-content table {
+    @apply w-full border border-slate-700 bg-slate-950 text-left mb-8;
+    border-collapse: collapse;
+  }
+
+  .blog-content th,
+  .blog-content td {
+    @apply border border-slate-700 px-4 py-3 align-top;
+  }
+
+  .blog-content th {
+    @apply bg-slate-900 font-semibold;
+  }
+
+  .blog-content img {
+    @apply max-w-full h-auto rounded-xl my-6;
+  }
+
+  .blog-content blockquote {
+    @apply border-l-4 border-primary/70 pl-4 italic text-slate-300 my-6;
+  }
+
+  .blog-content a {
+    @apply text-primary underline decoration-primary/40;
+  }
+
+  .blog-content pre,
+  .blog-content code {
+    @apply rounded-md bg-slate-950 px-3 py-2 text-xs;
+  }
+}

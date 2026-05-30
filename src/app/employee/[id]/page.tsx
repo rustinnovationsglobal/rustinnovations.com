@@ -60,19 +60,27 @@ export default async function EmployeeVerificationPage({ params }: Props) {
         <div className="mt-10 grid gap-6 rounded-3xl border border-white/10 bg-slate-950/80 p-6 sm:grid-cols-2">
           <div className="space-y-3">
             <p className="text-sm text-slate-400">Employee ID</p>
-            <p className="text-lg font-semibold text-white">{employee.id}</p>
+            <p className="text-lg font-semibold text-white">{employee.employee_id ?? employee.id}</p>
           </div>
           <div className="space-y-3">
             <p className="text-sm text-slate-400">Role</p>
             <p className="text-lg font-semibold text-white">{employee.role}</p>
           </div>
           <div className="space-y-3">
-            <p className="text-sm text-slate-400">Email</p>
-            <p className="text-lg font-semibold text-white">{employee.email}</p>
+            <p className="text-sm text-slate-400">Father Name</p>
+            <p className="text-lg font-semibold text-white">{employee.father_name || 'Not available'}</p>
           </div>
           <div className="space-y-3">
-            <p className="text-sm text-slate-400">Record created</p>
-            <p className="text-lg font-semibold text-white">{new Date(employee.created_at).toLocaleDateString()}</p>
+            <p className="text-sm text-slate-400">Joining Date</p>
+            <p className="text-lg font-semibold text-white">{employee.joining_date ? new Date(employee.joining_date).toLocaleDateString() : 'Unknown'}</p>
+          </div>
+          <div className="space-y-3">
+            <p className="text-sm text-slate-400">Email</p>
+            <p className="text-lg font-semibold text-white">{employee.email || 'Not provided'}</p>
+          </div>
+          <div className="space-y-3">
+            <p className="text-sm text-slate-400">Status</p>
+            <p className="text-lg font-semibold text-white">{employee.status || 'Active'}</p>
           </div>
         </div>
 
