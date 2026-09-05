@@ -54,7 +54,7 @@ export default async function BlogPage({ params }: Props) {
           </Link>
         </div>
         {blog.featured_image && (
-          <div className="relative h-72 w-full mb-6 rounded-lg overflow-hidden">
+          <div className="relative h-[420px] md:h-[520px] w-full mb-6 rounded-xl overflow-hidden shadow-xl shadow-black/20">
             <Image src={blog.featured_image} alt={blog.image_alt ?? blog.title} fill className="object-cover" />
           </div>
         )}

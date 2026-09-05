@@ -107,7 +107,7 @@ export function Header() {
                                 }}
                                 target={product.href ? '_blank' : undefined}
                                 rel={product.href ? 'noopener noreferrer' : undefined}
-                                className={`group flex min-h-[120px] w-[120px] flex-col items-center justify-center gap-2 rounded-3xl border border-white/10 bg-slate-950/80 p-3 text-center shadow-sm shadow-black/10 transition-all duration-200 cursor-pointer hover:scale-105 hover:border-primary/60 hover:border-2`}
+                                className="group flex min-h-[120px] w-[120px] flex-col items-center justify-center gap-2 p-3 text-center transition-transform duration-200 hover:scale-105"
                                 aria-label={product.href ? `Visit ${product.name} external page` : `Inquire about our ${product.name} product`}
                               >
                                 {hasProductImage ? (
@@ -231,7 +231,7 @@ export function Header() {
                     target={product.href ? '_blank' : undefined}
                     rel={product.href ? 'noopener noreferrer' : undefined}
                     onClick={() => setProductsModalOpen(false)}
-                    className={`group flex h-[120px] w-full flex-col items-center justify-center gap-2 rounded-3xl border border-white/10 bg-slate-950/80 p-3 text-center shadow-sm shadow-black/10 transition-all duration-200 cursor-pointer hover:scale-105 hover:border-primary hover:border-2`}
+                    className="group flex h-[120px] w-full flex-col items-center justify-center gap-2 p-3 text-center transition-transform duration-200 hover:scale-105"
                     aria-label={product.href ? `Visit ${product.name} external page` : `Inquire about our ${product.name} product`}
                   >
                     {hasProductImage ? (

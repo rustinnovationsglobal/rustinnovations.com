@@ -8,7 +8,8 @@ export function useLenis() {
     const lenis = new Lenis({
       lerp: 0.1, // Adjusted for more 'elastic' feel
       smoothWheel: true,
-      smoothTouch: true, // Added for mobile elasticity
+      
+    
     });
 
     function raf(time: number) {

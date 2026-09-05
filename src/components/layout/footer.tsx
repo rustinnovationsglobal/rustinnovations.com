@@ -112,7 +112,7 @@ export function Footer() {
               ))}
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-8 lg:col-span-7 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-8 lg:col-span-7 lg:grid-cols-4">
               {/* Quick Links */}
               <nav aria-label="Footer quick navigation links">
                 <h3 className="font-headline text-lg font-semibold">Quick Links</h3>
@@ -148,6 +148,8 @@ export function Footer() {
                   ))}
                 </ul>
               </nav>
+
+             
 
               {/* Operational Countries */}
               <nav aria-label="Operational regional details">
@@ -211,6 +213,27 @@ export function Footer() {
                   })}
                 </ul>
               </nav>
+
+
+               {/* Downloads */}
+              <nav aria-label="Download our products" className="lg:ml-6">
+                <h3 className="font-headline text-lg font-semibold">Download</h3>
+                <ul className="mt-4 space-y-2">
+                  <li>
+                    <Link
+                      href="https://play.google.com/store/apps/details?id=com.rustinnovations.rustwheel&hl=en"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-muted-foreground transition-colors hover:text-primary focus-visible:ring-1 focus-visible:ring-primary"
+                      aria-label="Download Rust Wheel from Google Play"
+                    >
+                      Rust Wheel
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
+
+
           </div>
         </div>
         <div className="mt-12 border-t pt-8 text-center text-sm text-muted-foreground">
