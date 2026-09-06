@@ -152,8 +152,8 @@ export function Footer() {
              
 
               {/* Operational Countries */}
-              <nav aria-label="Operational regional details">
-                <h3 className="font-headline text-lg font-semibold whitespace-nowrap">
+              <nav aria-label="Operational regional details" className="col-span-2 lg:col-span-1">
+                <h3 className="font-headline text-lg font-semibold mr-4">
                   Operational Countries
                 </h3>
                 <ul className="mt-4 space-y-2">
@@ -216,7 +216,7 @@ export function Footer() {
 
 
                {/* Downloads */}
-              <nav aria-label="Download our products" className="lg:ml-6">
+              <nav aria-label="Download our products" className="col-span-2 lg:col-span-1">
                 <h3 className="font-headline text-lg font-semibold">Download</h3>
                 <ul className="mt-4 space-y-2">
                   <li>
@@ -236,8 +236,13 @@ export function Footer() {
 
           </div>
         </div>
-        <div className="mt-12 border-t pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Rust Innovations. All rights reserved.</p>
+        <div className="mt-16 text-center font-[family-name:var(--font-karla)]">
+          <p className="relative left-1/2 w-screen max-w-screen -translate-x-1/2 overflow-hidden whitespace-nowrap bg-gradient-to-b from-gray-200 via-gray-400 to-gray-800 bg-clip-text px-4 text-[clamp(2rem,10.5vw,14rem)] font-[family-name:var(--font-space-grotesk)] font-black leading-none tracking-tight text-transparent uppercase letter-spacing: 0.1em">
+            Rust Innovations
+          </p>
+          <p className="mt-3 text-sm text-muted-foreground">
+            &copy; {new Date().getFullYear()} All Rights Reserved.
+          </p>
         </div>
       </div>
     </footer>

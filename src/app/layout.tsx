@@ -1,10 +1,11 @@
 
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
-import { Inter, PT_Sans, Space_Grotesk } from 'next/font/google';
+import { Inter, Karla, PT_Sans, Space_Grotesk } from 'next/font/google';
 import { Toaster } from '@/components/ui/toaster';
 import { PageProgress } from '@/components/page-progress';
 import { TooltipProvider } from '@/components/ui/tooltip';
+import CustomCursor from '@/components/ui/custom-cursor';
 import LenisProvider from './lenis-provider';
 import AppShell from '@/components/app-shell';
 import { cn } from '@/lib/utils';
@@ -25,6 +26,12 @@ const ptSans = PT_Sans({
 const spaceGrotesk = Space_Grotesk({ 
   subsets: ['latin'], 
   variable: '--font-space-grotesk',
+  display: 'swap',
+});
+
+const karla = Karla({
+  subsets: ['latin'],
+  variable: '--font-karla',
   display: 'swap',
 });
 
@@ -80,7 +87,7 @@ export default function RootLayout({
   return (
     <html 
       lang="en" 
-      className={cn("dark", inter.variable, ptSans.variable, spaceGrotesk.variable)}
+      className={cn("dark", inter.variable, ptSans.variable, spaceGrotesk.variable, karla.variable)}
       suppressHydrationWarning
     >
       <body className="font-body antialiased bg-background text-foreground" suppressHydrationWarning>
@@ -88,6 +95,7 @@ export default function RootLayout({
           <TooltipProvider>
             <PageProgress />
             <AppShell>{children}</AppShell>
+            <CustomCursor />
             <Toaster />
           </TooltipProvider>
         </LenisProvider>
