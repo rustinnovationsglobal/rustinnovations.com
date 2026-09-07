@@ -2,6 +2,8 @@ import { getAllBlogs } from '@/lib/supabase';
 import BlogList from '@/components/BlogList';
 import type { Metadata } from 'next';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Media Center - Rust Innovations',
   description: 'Latest news and articles from Rust Innovations',

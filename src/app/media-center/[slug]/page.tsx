@@ -9,6 +9,8 @@ type Props = {
   params: { slug: string };
 };
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const blog = await getBlogBySlug(params.slug);
   if (!blog) return { title: 'Not found' };

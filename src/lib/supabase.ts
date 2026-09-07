@@ -81,7 +81,8 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
     .order('created_at', { ascending: false });
 
   if (error || !data) {
-    return blogPosts;
+    console.error('Supabase getBlogPosts error:', error);
+    return [];
   }
 
   return data.map(mapBlogRow);
@@ -100,7 +101,10 @@ export async function getBlogPost(id: string): Promise<BlogPost | undefined> {
     .single();
 
   if (error || !data) {
-    return blogPosts.find((post) => post.id === id);
+    if (error) {
+      console.error(`Supabase getBlogPost(${id}) error:`, error);
+    }
+    return undefined;
   }
 
   return mapBlogRow(data);

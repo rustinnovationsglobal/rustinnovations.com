@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import React from 'react';
 import Link from 'next/link';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import {
   ArrowRight,
   ShieldCheck,
