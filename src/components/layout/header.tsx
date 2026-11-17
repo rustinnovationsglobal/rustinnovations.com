@@ -138,14 +138,14 @@ export function Header() {
                         Products could not be loaded
                       </div>
                     ) : products.length > 0 ? (
-                      <div className="grid grid-cols-3 gap-5">
+                      <div className="grid grid-cols-2 gap-5 lg:grid-cols-3">
                         {products.map((product) => (
                           <DropdownMenuItem key={product.id} asChild className="p-0 focus:bg-transparent">
                             <a
                               href={product.link}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="group flex min-h-[120px] w-full flex-col items-center justify-center gap-2 p-3 text-center transition-transform duration-200 hover:scale-105"
+                              className="group flex min-h-[140px] w-full flex-col items-center justify-center gap-2 p-3 text-center transition-transform duration-200 hover:scale-105"
                               aria-label={`Visit ${product.name} external page`}
                             >
                               <span className="flex h-20 w-20 items-center justify-center rounded-2xl bg-white/5 p-2 transition-transform duration-200 transform-gpu group-hover:scale-110">
@@ -161,7 +161,7 @@ export function Header() {
                                   )}
                                 />
                               </span>
-                              <p className="w-full truncate text-xs font-semibold text-foreground">
+                              <p className="w-full whitespace-normal break-words text-xs font-semibold leading-tight text-foreground">
                                 {product.name}
                               </p>
                             </a>
@@ -253,7 +253,7 @@ export function Header() {
               Products could not be loaded
             </div>
           ) : products.length > 0 ? (
-            <div className="grid grid-cols-3 gap-5 py-4 overflow-y-auto max-h-[60vh]">
+            <div className="scrollbar-none grid max-h-[60vh] grid-cols-2 gap-5 overflow-y-auto py-4">
               {products.map((product) => (
                 <a
                   key={product.id}
@@ -261,7 +261,7 @@ export function Header() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setProductsModalOpen(false)}
-                  className="group flex h-[120px] w-full flex-col items-center justify-center gap-2 p-3 text-center transition-transform duration-200 hover:scale-105"
+                  className="group flex min-h-[140px] w-full flex-col items-center justify-center gap-2 p-3 text-center transition-transform duration-200 hover:scale-105"
                   aria-label={`Visit ${product.name} external page`}
                 >
                   <span className="flex h-20 w-20 items-center justify-center rounded-2xl bg-white/5 p-2 transition-transform duration-200 transform-gpu group-hover:scale-110">
@@ -277,7 +277,7 @@ export function Header() {
                       )}
                     />
                   </span>
-                  <p className="w-full truncate text-xs font-semibold text-foreground">{product.name}</p>
+                  <p className="w-full whitespace-normal break-words text-xs font-semibold leading-tight text-foreground">{product.name}</p>
                 </a>
               ))}
             </div>

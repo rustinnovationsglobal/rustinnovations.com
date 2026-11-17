@@ -87,6 +87,15 @@ html {
 }
 
 @layer utilities {
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
   @keyframes gradient-animation {
     0% {
       background-position: 0% 50%;
