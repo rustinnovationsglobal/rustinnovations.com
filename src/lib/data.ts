@@ -1,5 +1,5 @@
 
-import type { NavLink, Service, Product, TeamMember, FooterLinks, BlogPost } from './types';
+import type { NavLink, Service, TeamMember, FooterLinks, BlogPost } from './types';
 import { PlaceHolderImages } from './placeholder-images';
 import { Bot, Code, Brush, BarChart3, Database, Cloud, Bitcoin, PenSquare, Type, Video, ShoppingCart, Search, Building } from 'lucide-react';
 
@@ -119,27 +119,6 @@ export const services: Service[] = [
     icon: Building,
     imageUrl: "https://picsum.photos/seed/115/600/400",
     imageHint: "virtual reality"
-  },
-];
-
-export const products: Product[] = [
-  {
-    id: 'rustwheel',
-    name: 'RustWheel',
-    description: 'RustWheel as product of RustInnovations',
-    imageUrl: '/assets/RustWheel.png',
-    imageHint: 'RustWheel logo',
-    specifications: [],
-    href: 'https://rustwheel.com/',
-  },
-  {
-    id: 'rustpass',
-    name: 'RustPass',
-    description: 'RustPass secure employee verification system',
-    imageUrl: '/assets/rustPass.svg',
-    imageHint: 'RustPass logo',
-    specifications: [],
-    href: 'https://rustpass.rustinnovations.com',
   },
 ];
 

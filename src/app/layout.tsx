@@ -5,7 +5,6 @@ import { Inter, Karla, PT_Sans, Space_Grotesk } from 'next/font/google';
 import { Toaster } from '@/components/ui/toaster';
 import { PageProgress } from '@/components/page-progress';
 import { TooltipProvider } from '@/components/ui/tooltip';
-import CustomCursor from '@/components/ui/custom-cursor';
 import LenisProvider from './lenis-provider';
 import AppShell from '@/components/app-shell';
 import { cn } from '@/lib/utils';
@@ -95,7 +94,6 @@ export default function RootLayout({
           <TooltipProvider>
             <PageProgress />
             <AppShell>{children}</AppShell>
-            <CustomCursor />
             <Toaster />
           </TooltipProvider>
         </LenisProvider>

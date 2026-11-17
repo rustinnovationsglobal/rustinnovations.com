@@ -11,7 +11,9 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
-import { navLinks, products } from '@/lib/data';
+import { navLinks } from '@/lib/data';
+import { getProducts } from '@/lib/supabase';
+import type { Product } from '@/lib/types';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,11 +22,44 @@ import {
 } from '@/components/ui/dropdown-menu';
 import Image from 'next/image';
 
+function isSvgImageUrl(url: string) {
+  return /\.svg(?:[?#]|$)/i.test(url);
+}
+
 export function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isProductsModalOpen, setProductsModalOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isProductsLoading, setProductsLoading] = useState(true);
+  const [productsLoadFailed, setProductsLoadFailed] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+
+    getProducts()
+      .then((loadedProducts) => {
+        if (active) {
+          setProducts(loadedProducts);
+        }
+      })
+      .catch((error: unknown) => {
+        console.error('Unable to load products from Supabase:', error);
+        if (active) {
+          setProductsLoadFailed(true);
+        }
+      })
+      .finally(() => {
+        if (active) {
+          setProductsLoading(false);
+        }
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -94,52 +129,44 @@ export function Header() {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="w-[360px] p-4" align="end">
                     <h3 className="mb-3 text-sm font-semibold text-foreground text-center">Our Products</h3>
-                    {products.length > 0 ? (
+                    {isProductsLoading ? (
+                      <div className="flex h-32 items-center justify-center text-muted-foreground">
+                        Loading products...
+                      </div>
+                    ) : productsLoadFailed ? (
+                      <div className="flex h-32 items-center justify-center text-muted-foreground">
+                        Products could not be loaded
+                      </div>
+                    ) : products.length > 0 ? (
                       <div className="grid grid-cols-3 gap-5">
-                        {products.slice(0, 9).map((product) => {
-                          const hasProductImage = ['rustwheel', 'rustpass'].includes(product.id);
-                          return (
-                            <DropdownMenuItem key={product.id} asChild className="p-0 focus:bg-transparent">
-                              <Link
-                                href={product.href || {
-                                  pathname: '/contact',
-                                  query: { subject: `Inquiry about ${product.name}` },
-                                }}
-                                target={product.href ? '_blank' : undefined}
-                                rel={product.href ? 'noopener noreferrer' : undefined}
-                                className="group flex min-h-[120px] w-[120px] flex-col items-center justify-center gap-2 p-3 text-center transition-transform duration-200 hover:scale-105"
-                                aria-label={product.href ? `Visit ${product.name} external page` : `Inquire about our ${product.name} product`}
-                              >
-                                {hasProductImage ? (
-                                  <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/5 p-2 transition-transform duration-200 transform-gpu group-hover:scale-110">
-                                    <Image
-                                      src={product.imageUrl}
-                                      alt={product.imageHint}
-                                      width={48}
-                                      height={48}
-                                      className="h-full w-full object-contain"
-                                      data-ai-hint={product.imageHint}
-                                    />
-                                  </span>
-                                ) : (
-                                  <span className="flex h-16 w-16 items-center justify-center rounded-3xl bg-white/20 p-2 shadow-inner shadow-black/10 transition duration-300 group-hover:bg-white/25">
-                                    <Image
-                                      src={product.imageUrl}
-                                      alt={product.imageHint}
-                                      width={48}
-                                      height={48}
-                                      className="h-full w-full rounded-2xl object-contain"
-                                      data-ai-hint={product.imageHint}
-                                    />
-                                  </span>
-                                )}
-                                <p className="w-full truncate text-xs font-semibold text-foreground">
-                                  {product.name}
-                                </p>
-                              </Link>
-                            </DropdownMenuItem>
-                          );
-                        })}
+                        {products.map((product) => (
+                          <DropdownMenuItem key={product.id} asChild className="p-0 focus:bg-transparent">
+                            <a
+                              href={product.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="group flex min-h-[120px] w-full flex-col items-center justify-center gap-2 p-3 text-center transition-transform duration-200 hover:scale-105"
+                              aria-label={`Visit ${product.name} external page`}
+                            >
+                              <span className="flex h-20 w-20 items-center justify-center rounded-2xl bg-white/5 p-2 transition-transform duration-200 transform-gpu group-hover:scale-110">
+                                <Image
+                                  src={product.img_url}
+                                  alt={product.name}
+                                  width={64}
+                                  height={64}
+                                  unoptimized
+                                  className={cn(
+                                    'h-full w-full object-contain',
+                                    isSvgImageUrl(product.img_url) && 'brightness-0 invert'
+                                  )}
+                                />
+                              </span>
+                              <p className="w-full truncate text-xs font-semibold text-foreground">
+                                {product.name}
+                              </p>
+                            </a>
+                          </DropdownMenuItem>
+                        ))}
                       </div>
                     ) : (
                       <div className="flex h-32 items-center justify-center text-muted-foreground">
@@ -217,50 +244,42 @@ export function Header() {
           <DialogHeader>
             <DialogTitle>Our Products</DialogTitle>
           </DialogHeader>
-          {products.length > 0 ? (
+          {isProductsLoading ? (
+            <div className="flex h-32 items-center justify-center text-muted-foreground">
+              Loading products...
+            </div>
+          ) : productsLoadFailed ? (
+            <div className="flex h-32 items-center justify-center text-muted-foreground">
+              Products could not be loaded
+            </div>
+          ) : products.length > 0 ? (
             <div className="grid grid-cols-3 gap-5 py-4 overflow-y-auto max-h-[60vh]">
-              {products.slice(0, 9).map((product) => {
-                const hasProductImage = ['rustwheel', 'rustpass'].includes(product.id);
-                return (
-                  <Link
-                    key={product.id}
-                    href={product.href || {
-                      pathname: '/contact',
-                      query: { subject: `Inquiry about ${product.name}` },
-                    }}
-                    target={product.href ? '_blank' : undefined}
-                    rel={product.href ? 'noopener noreferrer' : undefined}
-                    onClick={() => setProductsModalOpen(false)}
-                    className="group flex h-[120px] w-full flex-col items-center justify-center gap-2 p-3 text-center transition-transform duration-200 hover:scale-105"
-                    aria-label={product.href ? `Visit ${product.name} external page` : `Inquire about our ${product.name} product`}
-                  >
-                    {hasProductImage ? (
-                      <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/5 p-2 transition-transform duration-200 transform-gpu group-hover:scale-110">
-                        <Image
-                          src={product.imageUrl}
-                          alt={product.imageHint}
-                          width={48}
-                          height={48}
-                          className="h-full w-full object-contain"
-                          data-ai-hint={product.imageHint}
-                        />
-                      </span>
-                    ) : (
-                      <span className="flex h-20 w-20 items-center justify-center rounded-3xl bg-white/20 p-2 shadow-inner shadow-black/10 transition duration-300 group-hover:bg-white/25">
-                        <Image
-                          src={product.imageUrl}
-                          alt={product.imageHint}
-                          width={64}
-                          height={64}
-                          className="h-full w-full rounded-2xl object-contain"
-                          data-ai-hint={product.imageHint}
-                        />
-                      </span>
-                    )}
-                    <p className="w-full truncate text-xs font-semibold text-foreground">{product.name}</p>
-                  </Link>
-                );
-              })}
+              {products.map((product) => (
+                <a
+                  key={product.id}
+                  href={product.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setProductsModalOpen(false)}
+                  className="group flex h-[120px] w-full flex-col items-center justify-center gap-2 p-3 text-center transition-transform duration-200 hover:scale-105"
+                  aria-label={`Visit ${product.name} external page`}
+                >
+                  <span className="flex h-20 w-20 items-center justify-center rounded-2xl bg-white/5 p-2 transition-transform duration-200 transform-gpu group-hover:scale-110">
+                    <Image
+                      src={product.img_url}
+                      alt={product.name}
+                      width={64}
+                      height={64}
+                      unoptimized
+                      className={cn(
+                        'h-full w-full object-contain',
+                        isSvgImageUrl(product.img_url) && 'brightness-0 invert'
+                      )}
+                    />
+                  </span>
+                  <p className="w-full truncate text-xs font-semibold text-foreground">{product.name}</p>
+                </a>
+              ))}
             </div>
           ) : (
             <div className="flex h-32 items-center justify-center text-muted-foreground">

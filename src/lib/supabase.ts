@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { blogPosts } from './data';
-import type { BlogPost, Blog } from './types';
+import type { BlogPost, Blog, Product } from './types';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? '';
@@ -29,6 +29,49 @@ const supabaseOptions = {
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, supabaseOptions);
 
 export const isSupabaseConfigured = Boolean(supabaseUrl && supabaseAnonKey);
+
+let productsCache: Product[] | undefined;
+let productsRequest: Promise<Product[]> | undefined;
+
+export function getProducts(): Promise<Product[]> {
+  if (productsCache) {
+    return Promise.resolve(productsCache);
+  }
+
+  if (!isSupabaseConfigured) {
+    return Promise.reject(new Error('Supabase is not configured; cannot load products.'));
+  }
+
+  if (productsRequest) {
+    return productsRequest;
+  }
+
+  const request = Promise.resolve(
+    supabase
+      .from('Products')
+      .select('id, name, link, img_url')
+      .order('id', { ascending: true })
+      .then(({ data, error }) => {
+        if (error) {
+          throw error;
+        }
+
+        productsCache = (data ?? []).map((row): Product => ({
+          id: String(row.id),
+          name: row.name,
+          link: row.link,
+          img_url: row.img_url,
+        }));
+
+        return productsCache;
+      })
+  ).finally(() => {
+    productsRequest = undefined;
+  });
+
+  productsRequest = request;
+  return request;
+}
 
 export type EmployeeRecord = {
   id: string;

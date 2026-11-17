@@ -19,11 +19,8 @@ export type Service = {
 export type Product = {
   id: string;
   name: string;
-  description: string;
-  imageUrl: string;
-  imageHint: string;
-  specifications: string[];
-  href?: string;
+  link: string;
+  img_url: string;
 };
 
 export type TeamMember = {
